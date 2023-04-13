@@ -1,36 +1,22 @@
 async function getPhotographers() {
-  // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet,
-  // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
-  let photographers = [
-    {
-      name: 'Ma data test',
-      id: 1,
-      city: 'Paris',
-      country: 'France',
-      tagline: 'Ceci est ma data test',
-      price: 400,
-      portrait: 'account.png',
-    },
-    {
-      name: 'Autre data test',
-      id: 2,
-      city: 'Londres',
-      country: 'UK',
-      tagline: 'Ceci est ma data test 2',
-      price: 500,
-      portrait: 'account.png',
-    },
-  ];
+  // Requête fetch qui cible le fichier json : "photographers.json"
+  const jsonTabResponse = await fetch('./data/photographers.json');
+  if (!jsonTabResponse.ok) {
+    console.lgo('Erreur lors de la récupération des photographes');
+  }
+  const data = await jsonTabResponse.json();
+  console.log(data); // les données du fichier JSON sont récupérés sous forme de tableau, nommé : data
+
   // et bien retourner le tableau photographers seulement une fois récupéré
-  return {
-    photographers: [...photographers, ...photographers, ...photographers],
-  };
+  return data;
 }
 
-async function displayData(photographers) {
+console.log(getPhotographers());
+
+async function displayData(data) {
   const photographersSection = document.querySelector('.photographer_section');
 
-  photographers.forEach((photographer) => {
+  data.forEach((photographer) => {
     const photographerModel = photographerFactory(photographer);
     const userCardDOM = photographerModel.getUserCardDOM();
     photographersSection.appendChild(userCardDOM);
@@ -38,9 +24,10 @@ async function displayData(photographers) {
 }
 
 async function init() {
-  // Récupère les datas des photographes
+  // Récupère les datas des photographes par le nom de son tableau : "photographers"
   const { photographers } = await getPhotographers();
   displayData(photographers);
+  console.log(photographers)
 }
 
 init();
