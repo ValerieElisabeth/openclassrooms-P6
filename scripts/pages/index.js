@@ -2,17 +2,22 @@ async function getPhotographers() {
   // Requête fetch qui cible le fichier json : "photographers.json"
   const jsonTabResponse = await fetch('./data/photographers.json');
   if (!jsonTabResponse.ok) {
-    console.lgo('Erreur lors de la récupération des photographes');
+    console.log('ERREUR récupération données des photographes');
+    return;
   }
-  const data = await jsonTabResponse.json();
-  console.log(data); // les données du fichier JSON sont récupérés sous forme de tableau, nommé : data
 
-  // et bien retourner le tableau photographers seulement une fois récupéré
+  // les données du fichier JSON sont récupérés sous forme d'un tableau, nommé : data
+  const data = await jsonTabResponse.json();
+  console.log(data); // TEST console
+
+  // Retourner le tableau photographers.
   return data;
 }
 
-console.log(getPhotographers());
+console.log(getPhotographers()); // TEST console
 
+
+// Boucle forEach sur chaque élément du tableau "data"
 async function displayData(data) {
   const photographersSection = document.querySelector('.photographer_section');
 
@@ -27,7 +32,7 @@ async function init() {
   // Récupère les datas des photographes par le nom de son tableau : "photographers"
   const { photographers } = await getPhotographers();
   displayData(photographers);
-  console.log(photographers)
+  console.log(photographers);
 }
 
 init();
