@@ -1,8 +1,13 @@
 @import url('photographer.css');
 
+html {
+  margin: auto;
+}
+
 body {
   font-family: 'DM Sans', sans-serif;
   margin: 0;
+  padding: 0;
 }
 
 img {
@@ -45,9 +50,77 @@ h1 {
 .photographer_section article h2 {
   color: #d3573c;
   font-size: 36px;
+  margin-bottom: 10px;
+  font-weight: 400;
+  line-height: 20px;
 }
 
-.photographer_section article img {
+/* 
+CONTAINER DE L'IMAGE 
+permettant à celle-ci d'être agrandit
+et de permettre que le surplus de l'image
+soit masqué.
+*/
+.imgContainer {
   height: 200px;
   width: 200px;
+  border-radius: 100px;
+  /* TRio indispensable pour centrer
+   1 seul élément dans son block */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* --- */
+  overflow: hidden;
+  /* border: solid 1px red; */
+}
+
+.imgContainer img {
+  width: 100%;
+  height: 100%;
+  /* object-position: 20% 30%; */
+}
+
+.infosContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: solid 1px red; */
+}
+
+.divCityCountryContainer {
+  display: flex;
+  flex-direction: row;
+  color: #d3573c;
+  font-size: 13px;
+  /* border: solid 1px rgb(0, 13, 255); */
+}
+
+.divCityCountryContainer p {
+  margin-right: 5px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  /* border: solid 1px rgb(0, 13, 255); */
+}
+
+.otherInfosContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  font-size: 10px;
+  /* border: solid 1px rgb(9, 255, 0); */
+}
+
+.tagline {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  /* border: solid 1px rgb(9, 255, 0); */
+}
+
+.price {
+  color: #757575;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  /* border: solid 1px rgb(9, 255, 0); */
 }
