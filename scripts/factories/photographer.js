@@ -1,16 +1,21 @@
 function photographerFactory(data) {
   const { name, id, city, country, tagline, price, portrait } = data;
 
-  const getPicture = `assets/photographers/${portrait}`;
+  const getPortrait = `assets/photographers/${portrait}`;
 
   function getUserCardDOM() {
+    //
+    //Création d'un lien <a> qui fait office de container parent, aqui engloble l'image et le h2.
+    const aElement = document.createElement('a');
+    aElement.setAttribute('href', './photographer.html?id=' + id);
+
     // Création d'un container à l'image, afin de gérer l'agrandissement des portaits dans leur block
     const imgContainer = document.createElement('div');
     imgContainer.classList.add('imgContainer');
 
     // Création balise <img> auquel on attribue la variable "portrait"
     const img = document.createElement('img');
-    img.setAttribute('src', getPicture);
+    img.setAttribute('src', getPortrait);
 
     // Création balise <H2> auquel on attribue la variable "name"
     const h2 = document.createElement('h2');
@@ -54,7 +59,8 @@ function photographerFactory(data) {
     // Rattachement des éléments créé aux DOM.
     // Création de la balise <article> qui sera rattachée à la classe : "photographer_section" en CSS.
     const article = document.createElement('article');
-    article.appendChild(imgContainer);
+    article.appendChild(aElement);
+    aElement.appendChild(imgContainer);
     imgContainer.appendChild(img);
     article.appendChild(h2);
     article.appendChild(infosContainer);
@@ -76,18 +82,7 @@ function photographerFactory(data) {
     country,
     tagline,
     price,
-    getPicture,
+    getPortrait,
     getUserCardDOM,
   };
 }
-
-/*
-    "name": "Mimi Keel",
-    "id": 243,
-    "city": "London",
-    "country": "UK",
-    "tagline": "Voir le beau dans le quotidien",
-    "price": 400,
-    "portrait": "MimiKeel.jpg"
-
- */

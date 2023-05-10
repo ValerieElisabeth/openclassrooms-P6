@@ -1,58 +1,32 @@
-// CONTRUCTION DE L'ENTÊTE DE LA PAGE D'ACCUEIL.
-// 1) Créer les éléments du DOM.
-const imgLogo = document.createElement('img');
-imgLogo.setAttribute('src', 'assets/images/logo.png');
-imgLogo.classList.add('logo');
-
-const aLinkIndex = document.createElement('a');
-aLinkIndex.setAttribute('href', '/index.html');
-aLinkIndex.appendChild(imgLogo);
-
-const title = document.createElement('h1');
-title.innerText = 'Nos photographes';
-
-// 2) Lier les éléments du DOM entre eux.
-const headerSection = document.querySelector('header');
-headerSection.appendChild(aLinkIndex);
-headerSection.appendChild(title);
-
-async function getPhotographers() {
-  // Requête fetch qui cible le fichier json : "photographers.json"
-  const response = await fetch('./data/photographers.json');
-  if (!response.ok) {
-    console.log('ERREUR récupération données des photographes');
-    return;
-  }
-
-  // les données du fichier JSON sont récupérés sous forme d'un tableau, nommé : data
-  const data = await response.json();
-  console.log(data); // TEST console
-
-  // Retourner le tableau photographers.
-  return data;
+/*
+LA FONCTION : init()
+Récupère uniquement les données liées au tableau d'objets : "photographers" (pas les "media")
+du fichier JSON, depuis la fonction : fecthGetPhotographers()
+Et affiche ces données, en faisant appel à la fonction : displayData.
+*/
+async function init() {
+  const dataBase = await fecthGetPhotographers();
+  const dataCible = dataBase.photographers;
+  displayData(dataCible);
 }
+init();
+//
 
-console.log(getPhotographers()); // TEST console
+/*
+LA FONCTION : displayData() affiche les données de chaque photographe :
+(1) En récupérant uniquement les données liées au tableau d'objets : "photographers"
+via le paramètre : NameDataCible de la fonction displayData(dataCible), définie dans int().
+(2) On boucle sur "photgraphers" et avec ses données on construit le DOM via : getUserCardDOM().
+*/
 
-// Boucle forEach sur chaque élément du tableau "data"
-async function displayData(data) {
+// (1) "dataCible" = "NameDataCible" = "photographers"
+async function displayData(NameDataCible) {
   const photographersSection = document.querySelector('.photographer_section');
 
-  data.forEach((photographer) => {
-    const photographerModel = photographerFactory(photographer);
+  // (2)
+  NameDataCible.forEach((allPhotographers) => {
+    const photographerModel = photographerFactory(allPhotographers);
     const userCardDOM = photographerModel.getUserCardDOM();
     photographersSection.appendChild(userCardDOM);
   });
 }
-
-async function init() {
-  // Récupère les datas des photographes par le nom de son tableau : "photographers"
-  const tabNamePhotographers = await getPhotographers();
-  const tabResult = tabNamePhotographers.photographers;
-  displayData(tabResult);
-  console.log(tabResult);
-}
-
-init();
-
-
