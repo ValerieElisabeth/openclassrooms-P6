@@ -1,11 +1,11 @@
 /*
 LA FONCTION : init()
 Récupère uniquement les données liées au tableau d'objets : "photographers" (pas les "media")
-du fichier JSON, depuis la fonction : fecthGetPhotographers()
+du fichier JSON, depuis la fonction : fetchGetPhotographers()
 Et affiche ces données, en faisant appel à la fonction : displayData.
 */
 async function init() {
-  const dataBase = await fecthGetPhotographers();
+  const dataBase = await fetchGetPhotographers();
   const dataCible = dataBase.photographers;
   displayData(dataCible);
 }

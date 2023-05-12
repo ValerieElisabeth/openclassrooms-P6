@@ -1,41 +1,33 @@
 /*
 LA FONCTION : init()
-Récupère uniquement les données liées au tableau d'objets : "photographers" (pas les "media")
-du fichier JSON, depuis la fonction : fecthGetPhotographers()
-Et affiche ces données, en faisant appel à la fonction : displayData.
+(1) On stocke notre requete Ftech dans la variable : dataBase)
+(2) On cible le tableau d'objets qui nous intéresse : "photographers"
+(3) La console confirme bien l'existence de notre tabeau : "photographers"
+(4) Utilisation de l'objet : URLSearch Params pour récupérer des données depuis l'URL.
+(5) On cible ensuite le paramètre de l'URL que nous vouslons utiliser et dans notre cas c'est l'ID.
+    Et grâce à la fonction : parseInt() le type Number de mon ID sera confirmé car l'objet URLSearchParams, renvoi des strings.
+(6) La console confirme que le type renvoyé de mon ID est un monbre.
+(7) Avec la méthode find(), on cible uniquement la donnée qui nous interesse avec une condition.
 */
+
 async function init() {
-  const urlSearchParams = new URLSearchParams(window.location.search);
-  const allMedias = urlSearchParams.get("id")
+  const dataBase = await fetchGetPhotographers(); // (1)
+  const dataCible = dataBase.photographers; // (2)
+  console.log(dataCible); // (3)
+
+  const urlSearchParams = new URLSearchParams(window.location.search); // (4)
+  const getId = parseInt(urlSearchParams.get('id')); // (5)
+  console.log(typeof getId); // (6)
+
+  const getNameId = dataCible.find(
+    (onePhotographer) => onePhotographer.id === getId
+  ); // (7)
+  console.log(getNameId.name);
+
+  const displayName = document.querySelector('main');
+  const model = photographerFactory(getNameId);
+  const headerDomModel = model.displayHeaderDOMPhotographer();
+  displayName.appendChild(headerDomModel);
 }
 init();
 //
-
-// MAIN --------------------------------------------
-// CONTRUCTION DE L'ENTÊTE DE LA PAGE DU PHOTOGRAPHE
-// 1) Créer les éléments du DOM.
-const containerParent = document.createElement('section');
-containerParent.classList.add('photograph-header');
-
-const photographeName = document.createElement('div');
-photographeName.innerText = 'NOM du PHOTOGRAPHE';
-
-const buttonContactMe = document.createElement('button');
-buttonContactMe.classList.add('contact_button');
-buttonContactMe.innerText = 'Contactez-moi';
-buttonContactMe.addEventListener('click', () => {
-  displayModal();
-});
-
-const profilContainer = document.createElement('div');
-profilContainer.classList.add('apparenceContainer');
-const profilImage = document.createElement('img');
-profilImage.setAttribute('src', '/assets/images/Mimi/Portrait_Nora.jpg');
-profilContainer.appendChild(profilImage);
-
-// 2) Lier les éléments du DOM entre eux.
-const mainSection = document.querySelector('main');
-mainSection.appendChild(containerParent);
-containerParent.appendChild(photographeName);
-containerParent.appendChild(buttonContactMe);
-containerParent.appendChild(profilContainer);

@@ -1,7 +1,10 @@
 @import url('photographer.css');
 
-html {
-  margin: auto;
+html,
+p {
+  /* margin: auto; */
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -14,6 +17,52 @@ img {
   object-fit: cover;
 }
 
+/* FLEXBOX --------------------------*/
+
+.d-flex {
+  display: flex;
+  border: solid 1px rgb(255, 157, 0);
+}
+
+.fd-c {
+  flex-direction: column;
+  border: solid 2px rgb(255, 187, 0);
+}
+
+.fd-r {
+  flex-direction: row;
+  border: solid 2px rgb(238, 0, 255);
+}
+
+.jc-c {
+  justify-content: center;
+}
+
+.jc-fs {
+  justify-content: flex-start;
+}
+
+.jc-sb {
+  justify-content: space-between;
+  border: solid 5px rgb(123, 255, 0);
+}
+
+/* CONTAINER --------------------------*/
+
+.c01 {
+  max-width: 100%;
+  margin: auto;
+  border: solid 3px yellow;
+  padding: 50px;
+  height: 800px;
+}
+
+/* MARGES --------------------------*/
+.mb {
+  margin-bottom: 50px;
+}
+/*-------------------------------------*/
+
 header {
   display: flex;
   flex-direction: row;
@@ -25,11 +74,13 @@ header {
 h1 {
   color: #901c1c;
   margin-right: 100px;
+  /* border: solid 3px yellow; */
 }
 
 .logo {
   height: 50px;
   margin-left: 100px;
+  /* border: solid 3px yellow; */
 }
 
 .photographer_section {
@@ -109,7 +160,6 @@ soit masqué.
   align-items: center;
   color: black;
   font-size: 10px;
-  /* border: solid 1px rgb(9, 255, 0); */
 }
 
 .tagline {
