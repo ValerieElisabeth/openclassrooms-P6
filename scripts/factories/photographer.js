@@ -131,8 +131,8 @@ function photographerFactory(data) {
 
     //---------------------------------------------//
     // 2) Lier les éléments du DOM entre eux.
-    const mainSection = document.querySelector('main');
-    mainSection.appendChild(headerContainer);
+    // const mainSection = document.querySelector('main');
+    // mainSection.appendChild(headerContainer);
 
     headerContainer.appendChild(infoContactContainer);
     infoContactContainer.appendChild(nameH2);
@@ -146,7 +146,17 @@ function photographerFactory(data) {
     headerContainer.appendChild(imgContainer);
     imgContainer.appendChild(img);
 
-    return mainSection;
+    return headerContainer;
+  }
+
+  function displayFormNameDOMPhotographer() {
+    const headerModal_Class = document.querySelector('.header-modal-class');
+
+    const p_Element = document.createElement('h2');
+    p_Element.classList.add('h2-photographer-name');
+    p_Element.innerText = 'ÇA FONCTIONNE ! ! !';
+    headerModal_Class.appendChild(p_Element);
+    return p_Element;
   }
 
   return {
@@ -159,5 +169,6 @@ function photographerFactory(data) {
     getPortrait,
     getUserCardDOM,
     displayHeaderDOMPhotographer,
+    displayFormNameDOMPhotographer,
   };
 }

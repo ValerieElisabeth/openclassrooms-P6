@@ -44,9 +44,11 @@ img {
 
 .jc-sb {
   justify-content: space-between;
-  border: solid 5px rgb(123, 255, 0);
 }
 
+.jc-sa {
+  justify-content: space-around;
+}
 /* CONTAINER --------------------------*/
 
 .c01 {

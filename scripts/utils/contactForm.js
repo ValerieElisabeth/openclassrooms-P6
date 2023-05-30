@@ -1,82 +1,82 @@
 function displayModal() {
-  const modal = document.getElementById('contact_modal');
+  const modal = document.querySelector('#contact-modal');
   modal.classList.remove('d-none');
   modal.classList.add('d-block');
 }
 
 function closeModal() {
-  const modal = document.getElementById('contact_modal');
+  const modal = document.querySelector('#contact-modal');
   modal.classList.remove('d-block');
   modal.classList.add('d-none');
 }
 
 //
 // HEADER MODALE -----------------------------------
-// 1a) Créer les éléments header de la modale.
-const body = document.querySelector('body');
-const modalPrincipalContainer = document.createElement('div');
-modalPrincipalContainer.id = 'contact_modal';
+// 1) Créer les éléments header de la modale.
+const modalPrincipalContainer = document.querySelector('#contact-modal');
+const modalSecondaryContainer = document.querySelector('.modal');
 modalPrincipalContainer.classList.add('d-none');
 
-const modalSecondaryContainer = document.createElement('div');
-modalSecondaryContainer.classList.add('modal');
-const headerModal = document.createElement('header');
-const h2Modal = document.createElement('h2');
-h2Modal.innerText = 'Contactez-moi';
-const closeModalImg = document.createElement('img');
-closeModalImg.setAttribute('src', 'assets/icons/close.svg');
-closeModalImg.addEventListener('click', () => {
+const headerModal_Class = document.querySelector('.header-modal-class');
+
+const h2_Element = document.querySelector('h2');
+const img_Element = document.createElement('img');
+
+
+img_Element.setAttribute('src', 'assets/icons/close.svg');
+img_Element.addEventListener('click', () => {
   closeModal();
 });
 
-// 1b) Lier les éléments de header de la modale entre eux.
-body.appendChild(modalPrincipalContainer);
+// FORMULAIRE --------------------------------------
+// 2) Créer les éléments de la balise <form> de la modale.
+const form_ModalElement = document.querySelector('.form-modal');
+
+// NOM DU PHOTOHRAPHE
+
+// PRÉNOM
+const lastName_Label = document.querySelector('.lastName-label');
+lastName_Label.setAttribute('for', 'lastName');
+lastName_Label.setAttribute('aria-labelledby', 'lastName');
+lastName_Label.setAttribute('aria-label', 'Écrire votre prénom');
+const lastName_Input = document.querySelector('#lastName');
+lastName_Input.setAttribute('type', 'text');
+
+// NOM input
+const firstName_Label = document.querySelector('.firstName-label');
+firstName_Label.setAttribute('for', 'firstName');
+firstName_Label.setAttribute('aria-labelledby', 'firstName');
+firstName_Label.setAttribute('aria-label', 'Écrire votre nom');
+const firstName_Input = document.querySelector('#firstName');
+firstName_Input.setAttribute('type', 'text');
+
+// ADRESSE E-MAIL input
+const email_Label = document.querySelector('.email-label');
+email_Label.setAttribute('for', 'email');
+email_Label.setAttribute('aria-labelledby', 'email');
+email_Label.setAttribute('aria-label', 'Écrire votre adresse e-mail');
+const email_Input = document.querySelector('#email');
+email_Input.setAttribute('type', 'email');
+email_Input.setAttribute('aria-require', 'true');
+
+// MESSAGE input
+const message_Label = document.querySelector('.message-label');
+message_Label.setAttribute('for', 'message');
+message_Label.setAttribute('aria-labelledby', 'message');
+message_Label.setAttribute('aria-label', 'Écrire votre message');
+const message_Input = document.querySelector('#message');
+message_Input.setAttribute('type', 'textArea');
+message_Input.classList.add('text-area');
+message_Input.rows = '20';
+
+// BOUTON input
+const submitBtn = document.querySelector('button');
+
+// 3) Lier la modale au DOM.
 modalPrincipalContainer.appendChild(modalSecondaryContainer);
-modalSecondaryContainer.appendChild(headerModal);
-headerModal.appendChild(h2Modal);
-headerModal.appendChild(closeModalImg);
+modalSecondaryContainer.appendChild(headerModal_Class);
+modalSecondaryContainer.appendChild(form_ModalElement);
 
-//
-// 2a) Créer les éléments de la balise <form> de la modale.
-const form = document.createElement('form');
-const containerLabel = document.createElement('div');
+headerModal_Class.appendChild(h2_Element);
+headerModal_Class.appendChild(img_Element);
 
-const firstNameLabel = document.createElement('label');
-firstNameLabel.innerText = 'Prénom';
-const firstNameInput = document.createElement('input');
-firstNameInput.placeholder = 'Prénom';
-
-const lastNameLabel = document.createElement('label');
-lastNameLabel.innerText = 'Nom';
-const lastNameInput = document.createElement('input');
-lastNameInput.placeholder = 'Nom';
-
-const eMailLabel = document.createElement('label');
-eMailLabel.innerText = 'Email';
-const eMailInput = document.createElement('input');
-eMailInput.setAttribute('type', 'email');
-eMailInput.placeholder = 'email@gmail.com';
-
-const msgLabel = document.createElement('label');
-msgLabel.innerText = 'Votre message';
-msgLabel.setAttribute('type', 'textArea');
-const msgInput = document.createElement('textArea');
-msgInput.classList.add('text-area');
-msgInput.rows = '20';
-
-const submitBtn = document.createElement('button');
-submitBtn.innerText = 'Envoyer';
-submitBtn.classList.add('contact_button');
-
-// 2b) Lier les éléments de la balise <form> de la modle entre eux.
-modalSecondaryContainer.appendChild(form);
-form.appendChild(containerLabel);
-form.appendChild(submitBtn);
-containerLabel.appendChild(firstNameLabel);
-containerLabel.appendChild(firstNameInput);
-containerLabel.appendChild(lastNameLabel);
-containerLabel.appendChild(lastNameInput);
-containerLabel.appendChild(eMailLabel);
-containerLabel.appendChild(eMailInput);
-containerLabel.appendChild(msgLabel);
-containerLabel.appendChild(msgInput);
