@@ -99,33 +99,56 @@
   cursor: pointer;
 }
 
-.modal {
+.modal-02Container-Class {
+  height: 100%;
   border-radius: 5px;
   background-color: #db8876;
   width: 50%;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: row;
   justify-content: space-between;
   padding: 35px;
   margin: auto;
 }
 
-.modal header {
-  justify-content: space-between;
+.modal-02Container-Class header {
   width: 100%;
 }
 
-.modal header img {
+.modal-02Container-Class header img {
   cursor: pointer;
 }
 
-.modal header h2 {
+.modal-02Container-Class header h2 {
+  margin-block: 0em;
+  width: 100%;
   font-size: 64px;
   font-weight: normal;
-  text-align: center;
+  text-align: start;
 }
 
+.modal-name-photographer {
+  margin-block-start: 0;
+  margin-block-end: 0.2em;
+}
+
+.modal-03Container-Header-Class {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.modal_04Container-div-Class {
+  width: 100%;
+}
+
+.h2-Contact-Element {
+  font-size: 64px;
+  font-weight: normal;
+}
+
+/*  FORMULAIRE  */
 form {
   display: flex;
   width: 100%;

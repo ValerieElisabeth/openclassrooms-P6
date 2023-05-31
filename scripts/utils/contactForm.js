@@ -1,36 +1,57 @@
+/* CODE DE NOMMAGE ----------------
+name_Element = élément créer.
+name_Class = Classe ciblée.
+ */
+
+//
+// OUVERTURE & FERMETURE DE LA MODALE ----------------
+
 function displayModal() {
-  const modal = document.querySelector('#contact-modal');
-  modal.classList.remove('d-none');
-  modal.classList.add('d-block');
+  const modal_01Container = document.querySelector('#modal-01Container-Class');
+  modal_01Container.classList.remove('d-none');
+  modal_01Container.classList.add('d-block');
 }
 
 function closeModal() {
-  const modal = document.querySelector('#contact-modal');
-  modal.classList.remove('d-block');
-  modal.classList.add('d-none');
+  const modalPrincipalContainer = document.querySelector(
+    '#modal-01Container-Class'
+  );
+  modal_01Container.classList.remove('d-block');
+  modal_01Container.classList.add('d-none');
 }
 
 //
 // HEADER MODALE -----------------------------------
 // 1) Créer les éléments header de la modale.
-const modalPrincipalContainer = document.querySelector('#contact-modal');
-const modalSecondaryContainer = document.querySelector('.modal');
-modalPrincipalContainer.classList.add('d-none');
+const modal_01Container = document.querySelector('#modal-01Container-Class');
 
-const headerModal_Class = document.querySelector('.header-modal-class');
+const modal_02Container = document.querySelector('.modal-02Container-Class');
+modal_01Container.classList.add('d-none');
 
-const h2_Element = document.querySelector('h2');
+const modal_03Container_Header_Class = document.querySelector(
+  '.modal-03Container-Header-Class'
+);
+
+const modal_04Container_Div_Element = document.createElement('div');
+modal_04Container_Div_Element.classList.add('modal_04Container-div-Class');
+modal_04Container_Div_Element.classList.add('d-flex');
+modal_04Container_Div_Element.classList.add('ai-c');
+
+const h2_Contact_Element = document.querySelector('.h2-Contact-Element');
+
+const div_ImageContainer_Element = document.createElement('div');
+div_ImageContainer_Element.classList.add('div-img-container');
 const img_Element = document.createElement('img');
 
-
 img_Element.setAttribute('src', 'assets/icons/close.svg');
+
 img_Element.addEventListener('click', () => {
   closeModal();
 });
 
 // FORMULAIRE --------------------------------------
 // 2) Créer les éléments de la balise <form> de la modale.
-const form_ModalElement = document.querySelector('.form-modal');
+const form_Modal_Element = document.querySelector('.form-modal');
 
 // NOM DU PHOTOHRAPHE
 
@@ -73,10 +94,12 @@ message_Input.rows = '20';
 const submitBtn = document.querySelector('button');
 
 // 3) Lier la modale au DOM.
-modalPrincipalContainer.appendChild(modalSecondaryContainer);
-modalSecondaryContainer.appendChild(headerModal_Class);
-modalSecondaryContainer.appendChild(form_ModalElement);
+modal_01Container.appendChild(modal_02Container);
+modal_02Container.appendChild(modal_03Container_Header_Class);
+modal_02Container.appendChild(form_Modal_Element);
 
-headerModal_Class.appendChild(h2_Element);
-headerModal_Class.appendChild(img_Element);
+modal_03Container_Header_Class.appendChild(modal_04Container_Div_Element);
 
+modal_04Container_Div_Element.appendChild(h2_Contact_Element);
+modal_04Container_Div_Element.appendChild(div_ImageContainer_Element);
+div_ImageContainer_Element.appendChild(img_Element);

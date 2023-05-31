@@ -17,21 +17,20 @@ img {
   object-fit: cover;
 }
 
+/* POLICES --------------------------*/
+
 /* FLEXBOX --------------------------*/
 
 .d-flex {
   display: flex;
-  border: solid 1px rgb(255, 157, 0);
 }
 
 .fd-c {
   flex-direction: column;
-  border: solid 2px rgb(255, 187, 0);
 }
 
 .fd-r {
   flex-direction: row;
-  border: solid 2px rgb(238, 0, 255);
 }
 
 .jc-c {
@@ -49,14 +48,32 @@ img {
 .jc-sa {
   justify-content: space-around;
 }
+
+.jc-c {
+  justify-content: center;
+}
+
+.ai-c {
+  align-items: center;
+}
+
+.ai-fs {
+  align-items: flex-start;
+}
+
 /* CONTAINER --------------------------*/
 
-.c01 {
+.container-01 {
   max-width: 100%;
   margin: auto;
-  border: solid 3px yellow;
   padding: 50px;
   height: 800px;
+  border: solid 1px yellow;
+}
+
+.container-02 {
+  width: 100%;
+  text-align: start;
 }
 
 /* MARGES --------------------------*/

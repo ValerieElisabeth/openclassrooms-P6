@@ -1,3 +1,9 @@
+/*
+La fonction : "photographerFactory" construit des bout de DOM ou "Mise en page" dynamiques prédéfinies,
+qui seront ensuite appelés via le nom de cette fonction pour être utilisé et rattachées
+aux endroits voulus dans le DOM final.
+ */
+
 function photographerFactory(data) {
   const { name, id, city, country, tagline, price, portrait } = data;
 
@@ -58,10 +64,18 @@ function photographerFactory(data) {
     pPrice.textContent = price + '€/jour';
     pPrice.classList.add('price');
 
-    // Rattachement des éléments créé aux DOM.
-    // Création de la balise <article> qui sera rattachée à la classe : "photographer_section" en CSS.
-    const article = document.createElement('article');
-    article.appendChild(aElement);
+    /*
+    (1) Création de la balise <article>.
+    Elle sera rattachée à la classe : ".photographer_section" via
+    un "querySelector", depuis le fichier : index.js.
+    
+    (2) Rattachement à tous les éléments qui constituent le DOM,
+    à la balise "article" qui pourra être appellée via sa fonction
+    et .appendChild à la classe : ".photographer_section".
+    */
+
+    const article = document.createElement('article'); // (1)
+    article.appendChild(aElement); // (2)
     aElement.appendChild(imgContainer);
     imgContainer.appendChild(img);
     article.appendChild(h2);
@@ -73,7 +87,7 @@ function photographerFactory(data) {
     otherInfosContainer.appendChild(pTagline);
     otherInfosContainer.appendChild(pPrice);
 
-    // La fonction retourne les valeurs contenue dans la balise <article>
+    // La fonction retourne un DOM, mis en page, dans la balise <article>.
     return article;
     //
   } // fin fonction : getUserCardDOM()
@@ -149,14 +163,17 @@ function photographerFactory(data) {
     return headerContainer;
   }
 
-  function displayFormNameDOMPhotographer() {
-    const headerModal_Class = document.querySelector('.header-modal-class');
-
-    const p_Element = document.createElement('h2');
-    p_Element.classList.add('h2-photographer-name');
-    p_Element.innerText = 'ÇA FONCTIONNE ! ! !';
-    headerModal_Class.appendChild(p_Element);
-    return p_Element;
+  function displayModalDOMPhotographerName() {
+    /* NOM DU PHOTOGRAPHE DANS LA MODALE :
+    (1) Création d'un élément "h2".
+    (2) Affichage dynamique du Nom du Photographe dans le h2 précedement créé.
+    (3) Retourner le "h2" afin qu'il soit rattaché à n'inporte quel élément du DOM,
+     à l'appel de cette fonction, depuis la Factory.
+    */
+    const h2_Element = document.createElement('h2'); // (1)
+    h2_Element.classList.add('modal-name-photographer');
+    h2_Element.innerText = name; //(2)
+    return h2_Element; // (3)
   }
 
   return {
@@ -169,6 +186,6 @@ function photographerFactory(data) {
     getPortrait,
     getUserCardDOM,
     displayHeaderDOMPhotographer,
-    displayFormNameDOMPhotographer,
+    displayModalDOMPhotographerName,
   };
 }
