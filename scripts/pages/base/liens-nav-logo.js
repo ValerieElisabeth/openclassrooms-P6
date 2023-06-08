@@ -1,8 +1,10 @@
 // CONTRUCTION DE L'ENTÊTE DE LA PAGE D'ACCUEIL.
 // 1) Créer les éléments du DOM.
-
+const containerImageLogo = document.createElement('div');
 const imgLogo = document.createElement('img');
 imgLogo.setAttribute('src', 'assets/images/logo.png');
+imgLogo.classList.add('container-03');
+
 imgLogo.classList.add('logo');
 
 const aLinkIndex = document.createElement('a');

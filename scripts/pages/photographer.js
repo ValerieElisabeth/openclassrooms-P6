@@ -14,6 +14,7 @@ LA FONCTION : init()
 async function init() {
   const dataBase = await fetchGetPhotographers(); // (1)
   const dataCible = dataBase.photographers; // (2)
+  console.log('CONSOLE LOG : dataBase.photographers'); // (3)
   console.log(dataCible); // (3)
 
   const urlSearchParams = new URLSearchParams(window.location.search); // (4)
@@ -62,3 +63,53 @@ async function init() {
 }
 init();
 //
+
+//
+
+//
+
+//
+
+//
+
+// GALERIE -----------------------------------------------------------------
+async function initGallery() {
+  const dataBaseMedia = await fetchGetPhotographers();
+  const dataCibleMedia = dataBaseMedia.media;
+  console.log('CONSOLE LOG : dataBaseMedia.media'); // (3)
+  displayGallery(dataCibleMedia);
+
+  // --- ESSAI -------------------------------------------------------------------------------------------------------
+
+  const urlSearchParams = new URLSearchParams(window.location.search); // (4)
+  const getIdImage = parseInt(urlSearchParams.get('id')); // (5)
+  console.log(typeof getIdImage); // (6)
+
+  // (7)
+  const getNameIdGallery = dataCibleMedia.find(
+    (onePhotographer) => onePhotographer.id === getIdImage
+  );
+
+ 
+
+  const displayName = document.querySelector('main'); // (10)
+  const model = photographerFactory(getNameIdGallery); // (11)
+  const headerDomModel = model.displayHeaderDOMPhotographer(); // (12)
+  displayName.appendChild(headerDomModel); // (13)
+
+
+  // ---FIN ESSAI -------------------------------------------------------------------------------------------------------
+}
+
+// GALLERY
+initGallery();
+
+async function displayGallery(ImgDataCible) {
+  const gallerySection = document.querySelector('.grid-gallery-container');
+
+  ImgDataCible.forEach((allGalleryImages) => {
+    const galleryModel = mediaFactory(allGalleryImages);
+    const galleryImagesDOM = galleryModel.getGalleryDOM();
+    gallerySection.appendChild(galleryImagesDOM);
+  });
+}

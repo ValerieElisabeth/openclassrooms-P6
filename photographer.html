@@ -11,7 +11,7 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header class="d-flex fd-c">
+    <header class="d-flex fd-c container-02">
       <!-- <img src="assets/images/logo.png" class="logo" /> -->
     </header>
     <main id="main">
@@ -21,22 +21,9 @@
     </main>
 
     <!-- /////////// CARDS //////////////// -->
-    <section class="d-flex fd-c jc-sb container-01">
-      <div class="d-flex fd-r jc-sb">
-        <div class="d-flex fd-c">
-          <div class="img-card-size">
-            <img src="" alt="galerie image du photographe" />
-          </div>
-          <div class="d-flex fd-r jc-sb">
-            <p class="picture-title">Titre photo</p>
-            <div class="d-flex fd-r jc-sb">
-              <p>note</p>
-              <p>Cœur</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+
+    <div class="grid-gallery-container container-02"></div>
+
     <!-- /////////// MODALE //////////////// -->
 
     <div id="modal-01Container-Class">
@@ -64,9 +51,12 @@
       </div>
     </div>
 
+    <!-- /////////// SCRIPT //////////////// -->
+
     <script src="scripts/pages/base/fetchRequeteAPI.js"></script>
     <script src="scripts/pages/base/liens-nav-logo.js"></script>
-    <script src="scripts/factories/photographer.js"></script>
+    <script src="scripts/factories/photographerFactory.js"></script>
+    <script src="scripts/factories/mediaFactory.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
