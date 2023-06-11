@@ -19,6 +19,7 @@ async function init() {
 
   const urlSearchParams = new URLSearchParams(window.location.search); // (4)
   const getId = parseInt(urlSearchParams.get('id')); // (5)
+  console.log('TYPE OF ici : ');
   console.log(typeof getId); // (6)
 
   // (7)
@@ -27,9 +28,11 @@ async function init() {
   );
 
   // (8) Affiche uniquement le nom d'un photographe en console.
+  console.log('GET NAME ici : ');
   console.log(getNameId.name);
 
   // (9) Affiche toutes les données d'un photographe en console.
+  console.log('GET NAME ID ici : ');
   console.log(getNameId);
 
   /*
@@ -59,57 +62,34 @@ async function init() {
   );
   const modelForm = photographerFactory(getNameId); // (B)
   const formDomModel = modelForm.displayModalDOMPhotographerName(); // (C)
-  photographerNameClass.appendChild(formDomModel);
+  photographerNameClass.appendChild(formDomModel); // (D)
+
+  initGallery(
+    getNameId,
+    dataBase.media.filter((item) => item.photographerId === getId)
+  );
 }
 init();
-//
 
 //
-
-//
-
-//
-
-//
-
-// GALERIE -----------------------------------------------------------------
-async function initGallery() {
-  const dataBaseMedia = await fetchGetPhotographers();
-  const dataCibleMedia = dataBaseMedia.media;
-  console.log('CONSOLE LOG : dataBaseMedia.media'); // (3)
-  displayGallery(dataCibleMedia);
-
-  // --- ESSAI -------------------------------------------------------------------------------------------------------
-
-  const urlSearchParams = new URLSearchParams(window.location.search); // (4)
-  const getIdImage = parseInt(urlSearchParams.get('id')); // (5)
-  console.log(typeof getIdImage); // (6)
-
-  // (7)
-  const getNameIdGallery = dataCibleMedia.find(
-    (onePhotographer) => onePhotographer.id === getIdImage
-  );
-
- 
-
-  const displayName = document.querySelector('main'); // (10)
-  const model = photographerFactory(getNameIdGallery); // (11)
-  const headerDomModel = model.displayHeaderDOMPhotographer(); // (12)
-  displayName.appendChild(headerDomModel); // (13)
-
-
-  // ---FIN ESSAI -------------------------------------------------------------------------------------------------------
+// // AFFICHER LA GALERIE DU PHOTOGRAPHE -----------------------------------------------------------------
+async function initGallery(photographer, medias) {
+  // Appel de ma fonction de construction du DOM et affectation
+  displayGallery(photographer, medias);
 }
 
-// GALLERY
-initGallery();
-
-async function displayGallery(ImgDataCible) {
+//
+// GALERIE -----------------------------------------------------------------
+async function displayGallery(photographer, medias) {
   const gallerySection = document.querySelector('.grid-gallery-container');
 
-  ImgDataCible.forEach((allGalleryImages) => {
-    const galleryModel = mediaFactory(allGalleryImages);
+  medias.forEach((allGalleryImages) => {
+    const galleryModel = mediaFactory(allGalleryImages, photographer.name);
     const galleryImagesDOM = galleryModel.getGalleryDOM();
+
+    // On récupère le DOM
+    console.log('Récupération du DOM GALLERY ICI: ');
+    console.log(galleryImagesDOM);
     gallerySection.appendChild(galleryImagesDOM);
   });
 }

@@ -1,7 +1,5 @@
-function mediaFactory(data) {
-  const { id, photographerId, title, image, likes, date, price } = data;
-
-  const getGallery = `assets/images/' ${(id, image)}`;
+function mediaFactory(data, photographerName) {
+  const { id, photographerId, title, image, video, likes, date, price } = data;
 
   function getGalleryDOM() {
     const article = document.createElement('article');
@@ -11,17 +9,41 @@ function mediaFactory(data) {
     article.classList.add('jc-sb');
 
     // Création d'un container pour l'image, afin de gérer l'agrandissement des portaits dans leur block
-    const imgContainer = document.createElement('div');
-    imgContainer.classList.add('img-container');
-    imgContainer.classList.add('d-flex');
-    imgContainer.classList.add('ai-c');
-    imgContainer.classList.add('jc-c');
+    const mediaContainer = document.createElement('div');
+    mediaContainer.classList.add('img-container');
+    mediaContainer.classList.add('d-flex');
+    mediaContainer.classList.add('ai-c');
+    mediaContainer.classList.add('jc-c');
 
-    // Création balise <img> auquel on attribue la variable "getGallery"
-    const imgElement = document.createElement('img');
-    imgElement.setAttribute('src', getGallery);
-    imgElement.setAttribute('aria-label', title);
-    imgElement.setAttribute('alt', 'galerie image du photographe ');
+    // Vérifier si c'est une image ou une vidéo
+    if (image) {
+      const getGallery = `assets/images/${photographerName}/${image}`;
+
+      // Création balise <img> auquel on attribue la variable "getGallery"
+      const imgElement = document.createElement('img');
+      imgElement.setAttribute('src', getGallery);
+      imgElement.classList.add('img-size');
+
+      imgElement.setAttribute('aria-label', title);
+      imgElement.setAttribute('alt', 'galerie image du photographe ');
+
+      // Ajouter l'élément image au container multimédia
+      mediaContainer.appendChild(imgElement);
+      //
+    } else if (video) {
+      const getVideo = `assets/images/${photographerName}/${video}`;
+
+      // Création balise <video> auquel on attribue la variable "getGallery"
+      const videoElement = document.createElement('video');
+      videoElement.setAttribute('src', getVideo);
+      videoElement.classList.add('video-size');
+      videoElement.setAttribute('type', 'video/mp4');
+      videoElement.setAttribute('aria-label', title);
+      videoElement.setAttribute('alt', 'galerie vidéo du photographe ');
+
+      // Ajouter l'élément vidéo au container multimédia
+      mediaContainer.appendChild(videoElement);
+    }
 
     // Container secondaire à la balise "article".
     // Il englobe toutes les informations sous l'image.
@@ -51,11 +73,12 @@ function mediaFactory(data) {
     // Création balise <p> auquel on attribue la variable "tagline"
     const pHeart = document.createElement('p');
     pHeart.classList.add('p-heart');
+    pHeart.textContent = '00';
 
     // RATTACHER LES ÉLÉMENTS AU DOM
-    article.appendChild(imgContainer);
+    article.appendChild(mediaContainer);
     article.appendChild(infosContainer);
-    imgContainer.appendChild(imgElement);
+    // mediaContainer.appendChild(imgElement);
     infosContainer.appendChild(h2Element);
     infosContainer.appendChild(noteContainer);
     noteContainer.appendChild(pNote);
@@ -70,9 +93,11 @@ function mediaFactory(data) {
     photographerId,
     title,
     image,
+    video,
     likes,
     date,
     price,
+    photographerName,
     getGalleryDOM,
   };
 }
