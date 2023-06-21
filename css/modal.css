@@ -1,0 +1,68 @@
+/* MODAL */
+
+/* Fond d'arrière plan de la modale */
+.background-modal-container {
+  border: solid 3px rgb(255, 60, 0);
+  background-color: #ede4e2;
+  opacity: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: '';
+  z-index: 100;
+}
+
+.modal-01Container-Id {
+  border: solid 30px rgb(255, 60, 0);
+}
+
+.modal-02Container-Class {
+  height: 100%;
+  border-radius: 5px;
+  background-color: #db8876;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 35px;
+  margin: auto;
+}
+
+.modal-02Container-Class header {
+  width: 100%;
+}
+
+.modal-02Container-Class header img {
+  cursor: pointer;
+}
+
+.modal-02Container-Class header h2 {
+  margin-block: 0em;
+  width: 100%;
+  font-size: 64px;
+  font-weight: normal;
+  text-align: start;
+}
+
+.modal-name-photographer {
+  margin-block-start: 0;
+  margin-block-end: 0.2em;
+}
+
+.modal-03Container-Header-Class {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.modal_04Container-div-Class {
+  width: 100%;
+}
+
+.h2-Contact-Element {
+  font-size: 64px;
+  font-weight: normal;
+}

@@ -10,6 +10,16 @@ function photographerFactory(data) {
   const getPortrait = `assets/photographers/${portrait}`;
 
   function getUserCardDOM() {
+    const main = document.querySelector('#main');
+    main.classList.add('container-02');
+
+    /*
+    (A) Création de la balise <article>.
+    Elle sera rattachée à la classe : ".photographer_section" via
+    un "querySelector", depuis le fichier : index.js.
+    */
+    const article = document.createElement('article'); // (A)
+
     /*
     (1) Création d'un lien <a> qui fait office de container parent, qui engloble l'image et le h2.
     (2) Le lien redirige vers la page : photographer.html
@@ -65,16 +75,12 @@ function photographerFactory(data) {
     pPrice.classList.add('price');
 
     /*
-    (1) Création de la balise <article>.
-    Elle sera rattachée à la classe : ".photographer_section" via
-    un "querySelector", depuis le fichier : index.js.
-    
+    RATTACHEMENT A LA BALISE ARTICLE
     (2) Rattachement à tous les éléments qui constituent le DOM,
     à la balise "article" qui pourra être appellée via sa fonction
     et .appendChild à la classe : ".photographer_section".
     */
 
-    const article = document.createElement('article'); // (1)
     article.appendChild(aElement); // (2)
     aElement.appendChild(imgContainer);
     imgContainer.appendChild(img);

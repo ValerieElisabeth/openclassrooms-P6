@@ -7,26 +7,26 @@ name_Class = Classe ciblée.
 // OUVERTURE & FERMETURE DE LA MODALE ----------------
 
 function displayModal() {
-  const modal_01Container = document.querySelector('#modal-01Container-Class');
-  modal_01Container.classList.remove('d-none');
-  modal_01Container.classList.add('d-block');
+  const modal_01Container_ID = document.querySelector('#modal-01Container-Id');
+  modal_01Container_ID.classList.remove('d-none');
+  modal_01Container_ID.classList.add('d-block');
 }
 
 function closeModal() {
   const modalPrincipalContainer = document.querySelector(
-    '#modal-01Container-Class'
+    '#modal-01Container-Id'
   );
-  modal_01Container.classList.remove('d-block');
-  modal_01Container.classList.add('d-none');
+  modal_01Container_ID.classList.remove('d-block');
+  modal_01Container_ID.classList.add('d-none');
 }
 
 //
 // HEADER MODALE -----------------------------------
 // 1) Créer les éléments header de la modale.
-const modal_01Container = document.querySelector('#modal-01Container-Class');
+const modal_01Container_ID = document.querySelector('#modal-01Container-Id');
 
 const modal_02Container = document.querySelector('.modal-02Container-Class');
-modal_01Container.classList.add('d-none');
+modal_01Container_ID.classList.add('d-none');
 
 const modal_03Container_Header_Class = document.querySelector(
   '.modal-03Container-Header-Class'
@@ -94,7 +94,7 @@ message_Input.rows = '20';
 const submitBtn = document.querySelector('button');
 
 // 3) Lier la modale au DOM.
-modal_01Container.appendChild(modal_02Container);
+modal_01Container_ID.appendChild(modal_02Container);
 modal_02Container.appendChild(modal_03Container_Header_Class);
 modal_02Container.appendChild(form_Modal_Element);
 

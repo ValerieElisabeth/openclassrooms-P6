@@ -5,7 +5,7 @@ LA FONCTION : fetchGetPhotographers()
 (3) La fonction retourne les données du tableau.
 */
 
-async function fetchGetPhotographers() {
+async function getFetchDatasPhotographersJSON() {
   const response = await fetch('./data/photographers.json'); // (1)
   const data = await response.json(); // (2)
   return data; // (3)

@@ -1,4 +1,5 @@
 @import url('photographer.css');
+@import url('modal.css');
 
 html,
 p {
@@ -61,6 +62,10 @@ img {
   align-items: flex-start;
 }
 
+.fw-w {
+  flex-wrap: wrap;
+}
+
 /* CONTAINER --------------------------*/
 
 .container-01 {
@@ -68,22 +73,13 @@ img {
   margin: auto;
   padding: 50px;
   height: 800px;
-  border: solid 1px yellow;
+  border: solid 5px rgb(255, 0, 247);
 }
 
 .container-02 {
-  max-width: 80%;
+  width: 90%;
   margin: auto;
-}
-
-.container-03 {
-  max-width: 100%;
-  height: 800px;
-  margin-top: 50px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  border: solid 3px rgb(0, 221, 255);
+  /* border: solid 0.5px rgb(0, 221, 255); */
 }
 
 /* MARGES --------------------------*/
@@ -92,31 +88,31 @@ img {
 }
 /*-------------------------------------*/
 
-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 90px;
-}
-
 h1 {
   color: #901c1c;
-  margin-right: 100px;
+  font-size: 36px;
+  font-weight: 400;
   /* border: solid 3px yellow; */
 }
 
 .logo {
-  height: 50px;
-  margin-left: 100px;
+  width: 100%;
+  height: 48px;
   /* border: solid 3px yellow; */
 }
 
+.section-header-home-page > a {
+  /* border: solid 3px rgb(251, 0, 255);
+  height: 200px; */
+}
+
 .photographer_section {
-  display: grid;
+  /* display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 70px;
-  margin-top: 100px;
+  margin-top: 100px; */
+  gap: 70px;
+  margin-top: 50px;
 }
 
 .photographer_section article {
@@ -135,6 +131,8 @@ h1 {
   line-height: 20px;
 }
 
+/* ENTETE PAGE ACCUEIL */
+
 /* 
 CONTAINER DE L'IMAGE 
 permettant à celle-ci d'être agrandit
@@ -142,8 +140,8 @@ et de permettre que le surplus de l'image
 soit masqué.
 */
 .imgContainer {
-  height: 200px;
   width: 200px;
+  height: 200px;
   border-radius: 100px;
   /* TRio indispensable pour centrer
    1 seul élément dans son block */

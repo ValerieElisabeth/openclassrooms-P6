@@ -21,9 +21,8 @@ function mediaFactory(data, photographerName) {
 
       // Création balise <img> auquel on attribue la variable "getGallery"
       const imgElement = document.createElement('img');
-      imgElement.setAttribute('src', getGallery);
       imgElement.classList.add('img-size');
-
+      imgElement.setAttribute('src', getGallery);
       imgElement.setAttribute('aria-label', title);
       imgElement.setAttribute('alt', 'galerie image du photographe ');
 
@@ -35,12 +34,18 @@ function mediaFactory(data, photographerName) {
 
       // Création balise <video> auquel on attribue la variable "getGallery"
       const videoElement = document.createElement('video');
-      videoElement.setAttribute('src', getVideo);
       videoElement.classList.add('video-size');
-      videoElement.setAttribute('type', 'video/mp4');
       videoElement.setAttribute('aria-label', title);
       videoElement.setAttribute('alt', 'galerie vidéo du photographe ');
+      videoElement.setAttribute('autoplay', true);
+      videoElement.setAttribute('controls', true);
 
+      // Création balise <video> auquel on attribue la variable "getGallery"
+
+      const sourceElement = document.createElement('source');
+      sourceElement.setAttribute('src', getVideo);
+      sourceElement.setAttribute('type', 'video/mp4');
+      videoElement.appendChild(sourceElement);
       // Ajouter l'élément vidéo au container multimédia
       mediaContainer.appendChild(videoElement);
     }
