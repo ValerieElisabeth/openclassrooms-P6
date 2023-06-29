@@ -5,17 +5,14 @@ name_Class = Classe ciblée.
 
 //
 // OUVERTURE & FERMETURE DE LA MODALE ----------------
+const modal_01Container_ID = document.querySelector('#modal-01Container-Id');
 
 function displayModal() {
-  const modal_01Container_ID = document.querySelector('#modal-01Container-Id');
   modal_01Container_ID.classList.remove('d-none');
   modal_01Container_ID.classList.add('d-block');
 }
 
 function closeModal() {
-  const modalPrincipalContainer = document.querySelector(
-    '#modal-01Container-Id'
-  );
   modal_01Container_ID.classList.remove('d-block');
   modal_01Container_ID.classList.add('d-none');
 }
@@ -23,7 +20,7 @@ function closeModal() {
 //
 // HEADER MODALE -----------------------------------
 // 1) Créer les éléments header de la modale.
-const modal_01Container_ID = document.querySelector('#modal-01Container-Id');
+modal_01Container_ID.classList.add('background-modal-container');
 
 const modal_02Container = document.querySelector('.modal-02Container-Class');
 modal_01Container_ID.classList.add('d-none');
@@ -43,12 +40,12 @@ const div_ImageContainer_Element = document.createElement('div');
 div_ImageContainer_Element.classList.add('div-img-container');
 const img_Element = document.createElement('img');
 
+// FERMETURE DE LA MODALE au click sur l'icone de la croix.
 img_Element.setAttribute('src', 'assets/icons/close.svg');
+img_Element.addEventListener('click', closeModal);
 
-img_Element.addEventListener('click', () => {
-  closeModal();
-});
-
+//
+//
 // FORMULAIRE --------------------------------------
 // 2) Créer les éléments de la balise <form> de la modale.
 const form_Modal_Element = document.querySelector('.form-modal');
@@ -90,16 +87,20 @@ message_Input.setAttribute('type', 'textArea');
 message_Input.classList.add('text-area');
 message_Input.rows = '20';
 
-// BOUTON input
+// BOUTON input : "ENVOYER"
 const submitBtn = document.querySelector('button');
+
+submitBtn.addEventListener('click', () => {
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const photographerId = parseInt(urlSearchParams.get('id'));
+  window.location.href = `./photographer.html?id=` + photographerId;
+});
 
 // 3) Lier la modale au DOM.
 modal_01Container_ID.appendChild(modal_02Container);
 modal_02Container.appendChild(modal_03Container_Header_Class);
 modal_02Container.appendChild(form_Modal_Element);
-
 modal_03Container_Header_Class.appendChild(modal_04Container_Div_Element);
-
 modal_04Container_Div_Element.appendChild(h2_Contact_Element);
 modal_04Container_Div_Element.appendChild(div_ImageContainer_Element);
 div_ImageContainer_Element.appendChild(img_Element);

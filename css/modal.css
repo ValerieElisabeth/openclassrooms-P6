@@ -2,31 +2,33 @@
 
 /* Fond d'arrière plan de la modale */
 .background-modal-container {
-  border: solid 3px rgb(255, 60, 0);
-  background-color: #ede4e2;
-  opacity: 50%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   content: '';
   z-index: 100;
-}
 
-.modal-01Container-Id {
-  border: solid 30px rgb(255, 60, 0);
+  /* Couleur d'arrière-plan avec opacité
+    Applique une couleur d'arrière plan aténuée qui n'affecte pas toute la modale */
+  background-color: rgba(255, 255, 255, 0.678);
 }
 
 .modal-02Container-Class {
-  height: 100%;
+  /* Centrer la modale dans son container */
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* -------------------------------------- */
+  height: 60; /* hauteur de la modale */
   border-radius: 5px;
   background-color: #db8876;
-  width: 50%;
+  width: 40%; /* Largeur de la modale */
   display: flex;
   align-items: center;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   padding: 35px;
   margin: auto;
 }

@@ -1,5 +1,6 @@
 @import url('photographer.css');
 @import url('modal.css');
+@import url('scrolling-menu.css');
 
 html,
 p {
@@ -73,7 +74,7 @@ img {
   margin: auto;
   padding: 50px;
   height: 800px;
-  border: solid 5px rgb(255, 0, 247);
+  /* border: solid 5px rgb(255, 230, 0); */
 }
 
 .container-02 {
@@ -82,8 +83,29 @@ img {
   /* border: solid 0.5px rgb(0, 221, 255); */
 }
 
+.container-03 {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  /* border: solid 2px rgb(255, 0, 251); */
+}
+
 /* MARGES --------------------------*/
-.mb {
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.mb-50 {
   margin-bottom: 50px;
 }
 /*-------------------------------------*/
@@ -92,6 +114,7 @@ h1 {
   color: #901c1c;
   font-size: 36px;
   font-weight: 400;
+  margin: 0px;
   /* border: solid 3px yellow; */
 }
 

@@ -3,7 +3,7 @@
 const sectionHeaderHomePage_Class = document.querySelector(
   '.section-header-photographer-page'
 );
-sectionHeaderHomePage_Class.classList.add('container-02');
+sectionHeaderHomePage_Class.classList.add('container-03');
 
 const a_Link_element = document.createElement('a');
 a_Link_element.setAttribute('href', '/index.html');

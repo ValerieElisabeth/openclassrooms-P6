@@ -1,5 +1,5 @@
 /*
-LA FONCTION : init()
+LA FONCTION : constructorPhotographerPage()
 SE CHARGE DE CONSTRUIRE ET D'AFFICHER TOUS LES ÉLÉMENTS DE MA PAGE : Photographe.html,
 EN RÉCUPÉRANT CHAQUE MORCEAU DE LA PAGE.
 (1) On stocke notre requete Ftech dans la variable : fetchDatasPhotographersJSON.
@@ -14,16 +14,18 @@ EN RÉCUPÉRANT CHAQUE MORCEAU DE LA PAGE.
 Nous ciblons donc l'ID et d'un photographe et il doit être égal à l'ID présent dans l'URL.
 */
 
-async function init() {
+async function constructorPhotographerPage() {
   const fetchDatasPhotographersJSON = await getFetchDatasPhotographersJSON(); // (1)
   const dataCibleJSONphotographers = fetchDatasPhotographersJSON.photographers; // (2)
-  console.log('CONSOLE LOG : fetchDatasPhotographersJSON.photographers'); // (3)
+  const dataCibleJSONmedias = fetchDatasPhotographersJSON.media;
+
+  console.log('A l l    P H O T O G R A P H E R S   d a t a s'); // (3)
   console.log(dataCibleJSONphotographers); // (3)
 
   const urlSearchParams = new URLSearchParams(window.location.search); //s (4)
   const getId_URL = parseInt(urlSearchParams.get('id')); // (5)
-  console.log('TYPE OF ici : ');
-  console.log(typeof getId_URL); // (6)
+  // console.log('TYPE OF ici : ');
+  // console.log(typeof getId_URL); // (6)
 
   // (7) L'id du Photographe doit être égal à celui de l'URL.
   const onePhotographerDatas = dataCibleJSONphotographers.find(
@@ -32,15 +34,18 @@ async function init() {
 
   // TESTS DE RÉCUPÉRATIONS DES DONNÉES D'UN SEUL PHOTOGRAPHE-----------------
   // (8) Affiche uniquement le nom d'un photographe en console.
-  console.log('GET NAME ici : ');
-  console.log(onePhotographerDatas.name);
+  // console.log('GET NAME ici : ');
+  // console.log(onePhotographerDatas.name);
 
   // (9) Affiche toutes les données d'un seul photographe en console.
-  console.log('GET NAME ID ici : ');
-  console.log(onePhotographerDatas);
+  // console.log('GET NAME ID ici : ');
+  // console.log(onePhotographerDatas);
 
   /*
-  // CONSTRUCTION ET AFFICHAGE DU HEADER DE LA PAGE ---------------------------
+  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+  CONSTRUCTION ET AFFICHAGE DU HEADER DE LA PAGE
+  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
   (10) Selectionner le "main" pour y afficher un model de DOM stocké dans la Factory.
   (11) La constante "model" stock la Factory et les données du photographe récupérées dans l'URL (onePhotographerDatas).
   (12) On récupère la construction du DOM de la fonction : "displayHeaderDOMPhotographer();"
@@ -53,15 +58,30 @@ async function init() {
   const headerDomModel = model.displayHeaderDOMPhotographer(); // (12)
   displayName.appendChild(headerDomModel); // (13)
 
-  //
-  // CONSTRUCTION ET AFFICHAGE DU NOM DU PHOTOGRAPHE DANS LA MODAL -----------------
   /*
+  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+  RÉCUPÉRATION DES DONNÉES DEPUIS LE TABLEAU "media" ET AFFICHAGE DU DOM DU MENU DÉROULANT
+  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ */
+
+  const scrollingMenuSection_Class =
+    document.querySelector('#scrolling-menu-id');
+
+  const modelScrolling = scrollingMenuFactory(dataCibleJSONmedias);
+  const scrollingDomModel = modelScrolling.displayScrollingMenu();
+  scrollingMenuSection_Class.appendChild(scrollingDomModel);
+  
+
+  /*
+  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+  CONSTRUCTION ET AFFICHAGE DU NOM DU PHOTOGRAPHE DANS LA MODAL
+  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
   (A) Cibler la classe : ".modal-03Container-Header-Class" dans la modale,
       qui affichera le nom du Photographe. 
   (B) On récupère la construction du DOM de la fonction : "displayFormNameDOMPhotographer();"
       et les données d'un photographe.
   (C) On rattache cette construction à la classe : au ".modal-03Container-Header-Class" dans le DOM.
-   */
+  */
 
   const photographerNameClass = document.querySelector(
     '.modal-03Container-Header-Class'
@@ -84,12 +104,15 @@ async function init() {
       (cibler) => cibler.photographerId === getId_URL
     )
   );
-} // Fin de la fonction init.
+} // Fin de la fonction : constructorPhotographerPage().
 
-init();
+constructorPhotographerPage();
 
-//
-// GALERIE -----------------------------------------------------------------
+/* 
+-  -  -  -  -  -  -  -  -  -  -  -  -  -
+AFFICHAGE et RÉCUPÉRATION DU DOM GALERIE
+-  -  -  -  -  -  -  -  -  -  -  -  -  -
+*/
 async function displayGallery(onePhotographer, onePhotographerMediasmedias) {
   const gallerySection = document.querySelector('.grid-gallery-container');
 

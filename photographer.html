@@ -1,31 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
+
+    <!-- LIEN FCHIER CSS ------>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+
+    <!-- FONT AWESOME --------->
+    <script
+      src="https://kit.fontawesome.com/de663da828.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- FAVICON -------------->
     <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+    <!-- POLICE GOOGLE -------->
     <link
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
       rel="stylesheet"
     />
+    <!-- TITRE DE LA PAGE ----->
     <title>Fisheye - photographe</title>
   </head>
   <body>
+    <!-- /////////// LOGO //////////////// -->
     <section
       class="section-header-photographer-page d-flex fd-r jc-sb ai-c"
     ></section>
 
-    <header class="d-flex fd-c container-02">
-      <!-- <img src="assets/images/logo.png" class="logo" /> -->
-    </header>
-    <main id="main">
-      <!-- <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div> -->
-    </main>
+    <!-- /////////// HEADER : Profil du Photographe //////////////// -->
+    <main id="main"></main>
 
+    <!-- /////////// MENU DÉROULANT //////////////// -->
+    <section id="scrolling-menu-id" class="container-02 d-flex fd-r"></section>
+
+  
     <!-- /////////// CARDS //////////////// -->
-
     <div class="grid-gallery-container container-02"></div>
 
     <!-- /////////// MODALE //////////////// -->
@@ -61,6 +72,8 @@
     <script src="scripts/pages/base/navPhotographer-Logo.js"></script>
     <script src="scripts/factories/photographerFactory.js"></script>
     <script src="scripts/factories/mediaFactory.js"></script>
+    <script src="scripts/factories/scrollingMenuFactory.js"></script>
+
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>

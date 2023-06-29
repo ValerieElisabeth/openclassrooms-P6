@@ -10,9 +10,6 @@ function photographerFactory(data) {
   const getPortrait = `assets/photographers/${portrait}`;
 
   function getUserCardDOM() {
-    const main = document.querySelector('#main');
-    main.classList.add('container-02');
-
     /*
     (A) Création de la balise <article>.
     Elle sera rattachée à la classe : ".photographer_section" via
@@ -151,8 +148,6 @@ function photographerFactory(data) {
 
     //---------------------------------------------//
     // 2) Lier les éléments du DOM entre eux.
-    // const mainSection = document.querySelector('main');
-    // mainSection.appendChild(headerContainer);
 
     headerContainer.appendChild(infoContactContainer);
     infoContactContainer.appendChild(nameH2);
@@ -168,6 +163,8 @@ function photographerFactory(data) {
 
     return headerContainer;
   }
+
+  
 
   function displayModalDOMPhotographerName() {
     /* NOM DU PHOTOGRAPHE DANS LA MODALE :

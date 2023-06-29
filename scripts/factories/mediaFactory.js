@@ -53,32 +53,34 @@ function mediaFactory(data, photographerName) {
     // Container secondaire à la balise "article".
     // Il englobe toutes les informations sous l'image.
     const infosContainer = document.createElement('div');
-    infosContainer.classList.add('infos-container');
-    infosContainer.classList.add('d-flex');
-    infosContainer.classList.add('fd-r');
-    infosContainer.classList.add('jc-sb');
+    infosContainer.classList.add(
+      'infos-container',
+      'd-flex',
+      'fd-r',
+      'jc-sb',
+      'ai-c'
+    );
 
     // Création balise <H2> auquel on attribue la variable "name"
     const h2Element = document.createElement('h2');
-    h2Element.classList.add('picture-title');
-    h2Element.classList.add('h2-element-title-img');
+    h2Element.classList.add('picture-title', 'h2-element-title-img');
     h2Element.textContent = title;
 
     const noteContainer = document.createElement('div');
-    noteContainer.classList.add('note-container');
-    noteContainer.classList.add('d-flex');
-    noteContainer.classList.add('fd-r');
-    noteContainer.classList.add('jc-sb');
+    noteContainer.classList.add('note-container', 'd-flex', 'fd-r', 'jc-sb');
 
     // Création balise <p> auquel on attribue la variable "city"
     const pNote = document.createElement('p');
-    pNote.classList.add('p-note');
+    pNote.classList.add('p-note', 'd-flex', 'jc-c', 'ai-c');
     pNote.textContent = likes;
 
     // Création balise <p> auquel on attribue la variable "tagline"
     const pHeart = document.createElement('p');
-    pHeart.classList.add('p-heart');
-    pHeart.textContent = '00';
+    pHeart.classList.add('p-heart', 'd-flex', 'jc-c', 'ai-c');
+
+    // Création balise <i> l'icône du coeur.
+    const iElement = document.createElement('i');
+    iElement.classList.add('fa-sharp', 'fa-solid', 'fa-heart');
 
     // RATTACHER LES ÉLÉMENTS AU DOM
     article.appendChild(mediaContainer);
@@ -88,10 +90,11 @@ function mediaFactory(data, photographerName) {
     infosContainer.appendChild(noteContainer);
     noteContainer.appendChild(pNote);
     noteContainer.appendChild(pHeart);
+    pHeart.appendChild(iElement);
 
     // La fonction retourne un DOM, mis en page, dans la balise <article>.
     return article;
-  } // fin fonction()
+  } // fin fonction : getGalleryDom()
 
   return {
     id,

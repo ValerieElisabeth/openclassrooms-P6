@@ -92,13 +92,6 @@
   width: 100px;
 }
 
-.picture-title {
-  color: #901c1c;
-  font-size: 24px;
-  font-weight: 400;
-  margin-top: 5px;
-}
-
 .contact_button {
   font-size: 20px;
   font-weight: bold;
@@ -121,7 +114,7 @@
 }
 
 .grid-gallery-container article {
-  border: solid 0.5px rgb(255, 47, 0);
+  /* border: solid 0.5px rgb(255, 47, 0); */
   /* background-color: rgb(225, 244, 196); */
 
   height: 100%;
@@ -135,14 +128,13 @@
   /* border: solid 10px rgb(46, 138, 0); */
 }
 
-.p-note {
+.p-heart,
+.p-note,
+.picture-title {
   width: 50%;
-  background-color: rgb(244, 237, 196);
-}
-
-.p-heart {
-  width: 50%;
-  background-color: rgb(244, 196, 242);
+  font-size: 24px;
+  font-weight: 500;
+  color: #901c1c;
 }
 
 .img-container {
@@ -171,8 +163,6 @@
   width: 70%;
   /* border: solid 2px rgb(212, 125, 223); */
 }
-
-
 
 /*  FORMULAIRE  */
 form {
