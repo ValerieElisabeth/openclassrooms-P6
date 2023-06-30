@@ -1,17 +1,30 @@
 /* le conteneur doit être en position relative */
-.custom-select {
+.select-container {
   position: relative;
   font-family: 'DM Sans', sans-serif;
   width: 170px;
   background-color: #901c1c;
-  border-radius: 6px 6px 0px 0px;
-  /* border-radius: 6px 6px 6px 6px; */
-
+  border-radius: 6px 6px 6px 6px;
   margin-left: 15px;
 }
 
+.select-container::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: #901c1c;
+  border-radius: 0 0 6px 6px;
+}
+
+.select-container.open::before {
+  border-radius: 0;
+}
+
 /* masquer l'élément SELECT d'origine */
-.custom-select select {
+.select-container select {
   display: none;
 }
 
@@ -28,7 +41,7 @@
   transform: translate(-50%) rotate(45deg);
 }
 
-/* pointer la flèche vers le haut lorsque la boîte de sélection est ouverte (active) :*/
+/* pointer la flèche vers le haut lorsque la boîte de sélection est ouverte (active) */
 .select-selected.select-arrow-active:after {
   right: 25px;
   width: 8px;
@@ -40,7 +53,7 @@
   transform: translate(-50%) rotate(45deg);
 }
 
-/* styliser les éléments (options), y compris l'élément sélectionné :*/
+/* styliser les éléments (options), y compris l'élément sélectionné */
 .select-items div,
 .select-selected {
   padding-top: 16px;
@@ -72,6 +85,10 @@
   border-bottom: transparent;
 }
 
+.select-selected.select-arrow-active {
+  border-radius: 6px 6px 0 0;
+}
+
 /* éléments de style (options) */
 .select-items {
   position: absolute;
@@ -92,4 +109,10 @@
 .select-items div:hover,
 .same-as-selected {
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Case par défaut en position ouverte */
+.default-option {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
