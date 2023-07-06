@@ -67,7 +67,7 @@ async function constructorPhotographerPage() {
   const scrollingMenuSection_Class =
     document.querySelector('#scrolling-menu-id');
 
-  const modelScrolling = scrollingMenuFactory(dataCibleJSONmedias);
+  const modelScrolling = mediaFactory(dataCibleJSONmedias);
   const scrollingDomModel = modelScrolling.displayScrollingMenu();
   scrollingMenuSection_Class.appendChild(scrollingDomModel);
   
