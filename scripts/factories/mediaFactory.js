@@ -1,7 +1,22 @@
-function mediaFactory(data, photographerName) {
-  const { id, photographerId, title, image, video, likes, date, price } = data;
+function mediaFactory(datasPhotographers, datasMedia) {
+  // JSON : photographers
+  const { name, id, city, country, tagline, priceByDay, portrait } =
+    datasPhotographers;
+  // JSON : media
+  const {
+    pictureId,
+    photographerId,
+    title,
+    image,
+    video,
+    likes,
+    date,
+    picturePrice,
+  } = datasMedia;
 
-  function getGalleryDOM() {
+  // * * * * * * * *  * * * * * * * * * * * * * * * * * * * * *
+
+  function displayGalleryDOM() {
     const article = document.createElement('article');
     article.classList.add('card-container');
     article.classList.add('d-flex');
@@ -17,30 +32,28 @@ function mediaFactory(data, photographerName) {
 
     // Vérifier si c'est une image ou une vidéo
     if (image) {
-      const getGallery = `assets/images/${photographerName}/${image}`;
+      const getGallery = `assets/images/${name}/${image}`;
 
       // Création balise <img> auquel on attribue la variable "getGallery"
       const imgElement = document.createElement('img');
       imgElement.classList.add('img-size');
       imgElement.setAttribute('src', getGallery);
       imgElement.setAttribute('aria-label', title);
-      imgElement.setAttribute('alt', 'galerie image du photographe ');
+      imgElement.setAttribute('alt', 'galerie image du photographe');
 
       // Ajouter l'élément image au container multimédia
       mediaContainer.appendChild(imgElement);
       //
     } else if (video) {
-      const getVideo = `assets/images/${photographerName}/${video}`;
+      const getVideo = `assets/images/${name}/${video}`;
 
       // Création balise <video> auquel on attribue la variable "getGallery"
       const videoElement = document.createElement('video');
       videoElement.classList.add('video-size');
       videoElement.setAttribute('aria-label', title);
-      videoElement.setAttribute('alt', 'galerie vidéo du photographe ');
+      videoElement.setAttribute('alt', 'galerie vidéo du photographe');
       videoElement.setAttribute('autoplay', true);
       videoElement.setAttribute('controls', true);
-
-      // Création balise <video> auquel on attribue la variable "getGallery"
 
       const sourceElement = document.createElement('source');
       sourceElement.setAttribute('src', getVideo);
@@ -94,7 +107,9 @@ function mediaFactory(data, photographerName) {
 
     // La fonction retourne un DOM, mis en page, dans la balise <article>.
     return article;
-  } // fin fonction : getGalleryDom()
+  } // fin fonction : displayGalleryDOM()
+
+  // * * * * * * * *  * * * * * * * * * * * * * * * * * * * *
 
   function displayScrollingMenu() {
     // Création de la section principal auquel sera rattaché tous les autres éléments.
@@ -187,19 +202,74 @@ function mediaFactory(data, photographerName) {
 
     // Retourne la section qui contient toute la construction du select.
     return sectionElement;
+  } // fin fonction : displayScrollingMenu()
+
+  // * * * * * * * *  * * * * * * * * * * * * * * * * * * * * *
+
+  function displayStatResults(totalLikes) {
+    // Construction de la section des statistiques
+    const statisticalsWindowContainer = document.createElement('div');
+    statisticalsWindowContainer.classList.add(
+      'statisticals',
+      'container-04',
+      'p-fixed',
+      'd-flex',
+      'jc-sb',
+      'ai-c'
+    );
+
+    const div_Element = document.createElement('div');
+    div_Element.classList.add('d-flex', 'jc-sb');
+    //
+
+    const p_iDisplayContainer = document.createElement('p');
+    p_iDisplayContainer.classList.add('d-flex', 'ai-c', 'jc-c');
+
+    const i_Element = document.createElement('i');
+    i_Element.classList.add(
+      'i-heart-stats',
+      'fa-sharp',
+      'fa-solid',
+      'fa-heart'
+    );
+
+    //
+    const p_ElementTotalLikes = document.createElement('p');
+    p_ElementTotalLikes.classList.add('stats-p', 'd-flex', 'ai-c', 'jc-c');
+    p_ElementTotalLikes.textContent = totalLikes;
+
+    const p_ElementPriceDay = document.createElement('p');
+    p_ElementPriceDay.classList.add('stats-p');
+    p_ElementPriceDay.textContent = priceByDay + '€/jour';
+
+    statisticalsWindowContainer.appendChild(div_Element);
+    div_Element.appendChild(p_ElementTotalLikes);
+    statisticalsWindowContainer.appendChild(p_ElementPriceDay);
+    div_Element.appendChild(p_iDisplayContainer);
+    p_iDisplayContainer.appendChild(i_Element);
+
+    return statisticalsWindowContainer;
   }
 
   return {
+    name,
     id,
+    city,
+    country,
+    tagline,
+    priceByDay,
+    portrait,
+    //
+    pictureId,
     photographerId,
     title,
     image,
     video,
     likes,
     date,
-    price,
-    photographerName,
-    getGalleryDOM,
+    picturePrice,
+    displayGalleryDOM,
     displayScrollingMenu,
+    displayStatResults,
   };
 }

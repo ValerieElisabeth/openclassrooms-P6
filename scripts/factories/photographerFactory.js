@@ -5,11 +5,11 @@ aux endroits voulus dans le DOM final.
  */
 
 function photographerFactory(data) {
-  const { name, id, city, country, tagline, price, portrait } = data;
+  const { name, id, city, country, tagline, priceByDay, portrait } = data;
 
   const getPortrait = `assets/photographers/${portrait}`;
 
-  function getUserCardDOM() {
+  function displayPhotographerCardDOM() {
     /*
     (A) Création de la balise <article>.
     Elle sera rattachée à la classe : ".photographer_section" via
@@ -66,9 +66,9 @@ function photographerFactory(data) {
     pTagline.textContent = tagline;
     pTagline.classList.add('tagline');
 
-    // Création balise <p> auquel on attribue la variable "price"
+    // Création balise <p> auquel on attribue la variable "priceByDay"
     const pPrice = document.createElement('p');
-    pPrice.textContent = price + '€/jour';
+    pPrice.textContent = priceByDay + '€/jour';
     pPrice.classList.add('price');
 
     /*
@@ -90,10 +90,10 @@ function photographerFactory(data) {
     otherInfosContainer.appendChild(pTagline);
     otherInfosContainer.appendChild(pPrice);
 
-    // La fonction retourne un DOM, mis en page, dans la balise <article>.
+    // La fonction retourne un DOM, mise en page, dans la balise <article>.
     return article;
     //
-  } // fin fonction : getUserCardDOM()
+  } // fin fonction : displayPhotographerCardDOM()
 
   function displayHeaderDOMPhotographer() {
     // MAIN --------------------------------------------
@@ -185,9 +185,9 @@ function photographerFactory(data) {
     city,
     country,
     tagline,
-    price,
+    priceByDay,
     getPortrait,
-    getUserCardDOM,
+    displayPhotographerCardDOM,
     displayHeaderDOMPhotographer,
     displayModalDOMPhotographerName,
   };
