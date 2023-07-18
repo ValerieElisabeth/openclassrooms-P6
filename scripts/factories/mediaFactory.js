@@ -14,7 +14,7 @@ function mediaFactory(datasPhotographers, datasMedia) {
     picturePrice,
   } = datasMedia;
 
-  // * * * * * * * *  * * * * * * * * * * * * * * * * * * * * *
+  // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
   function displayGalleryDOM() {
     const article = document.createElement('article');
@@ -109,7 +109,7 @@ function mediaFactory(datasPhotographers, datasMedia) {
     return article;
   } // fin fonction : displayGalleryDOM()
 
-  // * * * * * * * *  * * * * * * * * * * * * * * * * * * * *
+  // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
   function displayScrollingMenu() {
     // Création de la section principal auquel sera rattaché tous les autres éléments.
@@ -204,7 +204,7 @@ function mediaFactory(datasPhotographers, datasMedia) {
     return sectionElement;
   } // fin fonction : displayScrollingMenu()
 
-  // * * * * * * * *  * * * * * * * * * * * * * * * * * * * * *
+  // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
   function displayStatResults(totalLikes) {
     // Construction de la section des statistiques

@@ -9,6 +9,8 @@ function photographerFactory(data) {
 
   const getPortrait = `assets/photographers/${portrait}`;
 
+  // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
   function displayPhotographerCardDOM() {
     /*
     (A) Création de la balise <article>.
@@ -95,6 +97,8 @@ function photographerFactory(data) {
     //
   } // fin fonction : displayPhotographerCardDOM()
 
+  // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
   function displayHeaderDOMPhotographer() {
     // MAIN --------------------------------------------
     // CONTRUCTION DE L'ENTÊTE DE LA PAGE DU PHOTOGRAPHE
@@ -164,7 +168,7 @@ function photographerFactory(data) {
     return headerContainer;
   }
 
-  
+  // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
   function displayModalDOMPhotographerName() {
     /* NOM DU PHOTOGRAPHE DANS LA MODALE :
