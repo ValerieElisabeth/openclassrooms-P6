@@ -99,6 +99,13 @@ img {
   /* border: solid 0.5px rgb(0, 221, 255); */
 }
 
+.container-05 {
+  width: 90%;
+  margin: auto;
+  /* border: solid 0.5px rgb(0, 221, 255); */
+  margin-bottom: 5rem;
+}
+
 /* MARGES --------------------------*/
 
 .mb-10 {

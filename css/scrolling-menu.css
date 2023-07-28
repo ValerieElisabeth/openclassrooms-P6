@@ -2,6 +2,7 @@
 .select-container {
   position: relative;
   font-family: 'DM Sans', sans-serif;
+  color: white;
   width: 170px;
   background-color: #901c1c;
   border-radius: 7px 7px 7px 7px;
@@ -26,6 +27,8 @@
 /* masquer l'élément SELECT d'origine */
 .select-container select {
   display: none;
+  border: solid 3px #901c1c;
+
 }
 
 /* stylisez la flèche à l'intérieur de l'élément select*/

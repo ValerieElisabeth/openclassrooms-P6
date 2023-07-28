@@ -6,6 +6,12 @@
     <!-- LIEN FCHIER CSS ------>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
 
+    <link rel="stylesheet" href="modal.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
     <!-- FONT AWESOME --------->
     <script
       src="https://kit.fontawesome.com/de663da828.js"
@@ -20,9 +26,20 @@
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
       rel="stylesheet"
     />
+    <!-- Police Google -->
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans"
+      rel="stylesheet"
+    />
     <!-- TITRE DE LA PAGE ----->
     <title>Fisheye - photographe</title>
   </head>
+
   <body>
     <!-- /////////// LOGO //////////////// -->
     <section
@@ -33,9 +50,20 @@
     <main id="main"></main>
 
     <!-- /////////// MENU DÉROULANT //////////////// -->
+
     <section id="scrolling-menu-id" class="container-02 d-flex fd-r">
-      <h3></h3>
+      <select>
+        <option value="popularite">Polularité</option>
+        <option value="date">Date</option>
+        <option value="title">Titre</option>
+      </select>
     </section>
+
+    <!-- modèle à suivre  -->
+
+    <!-- <section id="scrolling-menu-id" class="container-02 d-flex fd-r">
+      <h3></h3>
+    </section> -->
 
     <!-- /////////// CARDS //////////////// -->
     <div class="grid-gallery-container container-02"></div>
@@ -45,27 +73,35 @@
 
     <!-- /////////// MODALE //////////////// -->
 
-    <div id="modal-01Container-Id">
+    <div class="modal-01Container-Class">
       <div class="modal-02Container-Class d-flex fd-c">
+        <!-- <span class="closeX"></span> -->
+
         <header class="modal-03Container-Header-Class d-flex fd-c ai-fs">
           <h2 class="h2-Contact-Element">Contactez-moi</h2>
         </header>
 
-        <form class="form-modal">
-          <div>
+        <form class="form" action="index.html" method="get" novalidate>
+          <div class="formData">
             <label class="lastName-label">Prénom</label>
-            <input id="lastName" />
-
-            <label class="firstName-label">Nom</label>
-            <input id="firstName" />
-
-            <label class="email-label">Email</label>
-            <input id="email" />
-
-            <label class="message-label">Votre message</label>
-            <input id="message" />
+            <input id="lastName" name="lastName" />
           </div>
-          <button class="contact_button">Envoyer</button>
+
+          <div class="formData">
+            <label class="firstName-label">Nom</label>
+            <input id="firstName" name="firstName" />
+          </div>
+
+          <div class="formData">
+            <label class="email-label">Email</label>
+            <input name="email" id="email" />
+          </div>
+          <div class="formData">
+            <label class="message-label">Votre message</label>
+            <input name="message" id="message" />
+          </div>
+          <!-- BOUTON ENVOIE ET RÉINITIALISE LA PAGE -->
+          <input class="contact_button submit" type="submit" value="Envoyer" />
         </form>
       </div>
     </div>
@@ -76,7 +112,6 @@
     <script src="scripts/pages/base/navPhotographer-Logo.js"></script>
     <script src="scripts/factories/photographerFactory.js"></script>
     <script src="scripts/factories/mediaFactory.js"></script>
-
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>

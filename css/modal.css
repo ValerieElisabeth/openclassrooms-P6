@@ -16,20 +16,31 @@
 }
 
 .modal-02Container-Class {
+  animation-name: modalAnimation;
+  animation-duration: 0.7s;
+  overflow: hidden;
+  position: relative;
+
+  /* scrolling right */
+  width: 670px;
+  height: 750px;
+  border-radius: 5px;
+  overflow: auto;
+
   /* Centrer la modale dans son container */
   position: fixed;
   top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   /* -------------------------------------- */
-  height: 60; /* hauteur de la modale */
   border-radius: 5px;
   background-color: #db8876;
-  width: 40%; /* Largeur de la modale */
+  /* Largeur de la modale */
+
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 35px;
+  padding: 45px;
   margin: auto;
 }
 
@@ -67,4 +78,39 @@
 .h2-Contact-Element {
   font-size: 64px;
   font-weight: normal;
+}
+
+/* ATRIBUT QUI SERA RÉCUPÉRÉ
+dans le fichier JS et à qui une valeur lui sera attribué contenant mon message d'erreur */
+.formData[data-error]::after {
+  content: attr(data-error);
+  font-size: 18px;
+  color: rgb(189, 16, 16);
+  font-weight: 900;
+  display: block;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  text-align: left;
+  letter-spacing: 1px;
+  line-height: 0.7;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.formData[data-error-visible='true']::after {
+  opacity: 1;
+}
+
+/* Contour rouge des input */
+.formData[data-error-visible='true'] .text-control {
+  border: 4px solid rgb(189, 16, 16);
+}
+
+@keyframes modalAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

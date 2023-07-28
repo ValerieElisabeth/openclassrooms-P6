@@ -269,7 +269,7 @@ function mediaFactory(datasPhotographers, datasMedia) {
     date,
     picturePrice,
     displayGalleryDOM,
-    displayScrollingMenu,
     displayStatResults,
+    displayScrollingMenu,
   };
 }
