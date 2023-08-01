@@ -1,0 +1,40 @@
+.e01 {
+  background-color: rgb(240, 237, 172);
+  width: 1440px;
+  height: 1024px;
+}
+
+.e03 {
+  border: solid 2px rgb(112, 129, 216);
+  max-width: auto;
+  height: 450px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.e04 {
+   background-color:  rgb(129, 216, 112);
+  width: 1050px;
+  height: 900px;
+}
+
+.e02 {
+  background-color: rgb(169, 178, 220);
+  width: 1050px;
+}
+
+.lightbox button {
+  background-color: transparent;
+  border: solid 0px;
+}
+
+
+.lightbox p {
+    border: solid 2px rgb(216, 112, 112);
+}
+
+.lightbox img {
+    background-color:  rgb(112, 129, 216);
+}
+  
+  

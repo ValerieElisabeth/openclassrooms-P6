@@ -34,9 +34,7 @@ async function constructorPhotographerPage() {
   const headerDomModel = model.displayHeaderDOMPhotographer();
   displayName.appendChild(headerDomModel);
 
-  // A   S U P P R I M E R
   // AFFICHAGE DU MENU "SELECT" DÉROULANT rattaché sur l'ID : scrolling-menu-id :
-
   const scrollingMenuSection_Id = document.querySelector('#scrolling-menu-id');
   const modelScrolling = mediaFactory(onePhotographerDatas, dataTabMediasJSON);
   const scrollingDOMModel = modelScrolling.displayScrollingMenu();
@@ -52,8 +50,6 @@ async function constructorPhotographerPage() {
     (total, media) => total + media.likes,
     0
   );
-  console.log('T O T A L   L I K E S');
-  console.log(totalLikes);
 
   const statisticalsWindow_Id = document.querySelector('#statisticals-window');
   const modelStatistics = mediaFactory(onePhotographerDatas, dataTabMediasJSON);
@@ -84,10 +80,13 @@ async function constructorPhotographerPage() {
     onePhotographerDatas,
     dataTabMediasJSON.filter((cibler) => cibler.photographerId === getId_URL)
   );
-}
+} // fin de la fonction : constructorPhotographerPage()
 
 //
-// Fonction qui affiche la galerie d'un photographe sur la page web
+//
+//
+//
+// FONCTION : displayGallery() affiche la galerie d'un photographe sur la page web
 async function displayGallery(onePhotographer, onePhotographerMedias) {
   const gallerySection = document.querySelector('.grid-gallery-container');
   gallerySection.textContent = '';
@@ -97,9 +96,9 @@ async function displayGallery(onePhotographer, onePhotographerMedias) {
     gallerySection.appendChild(galleryImagesDOM);
   });
 }
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-// FONCTION : filterMedia()
 
+//
+// FONCTION : filterMedia()
 async function filterMedia(onePhotographerDatas, sortDatasMedia) {
   document.querySelectorAll('.select-items div').forEach((element) => {
     element.addEventListener('click', async (e) => {

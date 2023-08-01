@@ -33,9 +33,11 @@ const modal_03Container_Header_Class = document.querySelector(
 );
 
 const modal_04Container_Div_Element = document.createElement('div');
-modal_04Container_Div_Element.classList.add('modal_04Container-div-Class');
-modal_04Container_Div_Element.classList.add('d-flex');
-modal_04Container_Div_Element.classList.add('ai-c');
+modal_04Container_Div_Element.classList.add(
+  'modal_04Container-div-Class',
+  'd-flex',
+  'ai-c'
+);
 
 const h2_Contact_Element = document.querySelector('.h2-Contact-Element');
 
@@ -148,7 +150,6 @@ function closeModal() {
                     LES FONCTIONS TEST ES VALIDATION DU FORMULAIRE
                             (par des valeurs Booléennes)
 ------------------------------------------------------------------------------------------------
-La fonction : test() est spécifique aux expressions regulières
 */
 
 //
@@ -205,12 +206,8 @@ function removeMessages(container) {
   container.removeAttribute('data-error-visible');
 }
 
-/*
-INITIALISATION des messages d'erreurs personnalisés -------------------------------//
-(3a)(3b) Initialisation des messages d'erreurs pour tous les champs du formulaire :
-"firstName" et "lastName" s'ils étaient vide.
--------------------------------------------------------------------------------------
-*/
+/* INITIALISATION des messages d'erreurss'ils étaient vide.
+------------------------------------------------------------------------------------- */
 const errorEmptyMsg = 'Ce champ ne peut pas être vide'; // (3a)
 const errorMinimumString = 'Vous devez entrer 2 caractères ou plus'; // (3b)
 const errorEmail = 'Vous devez saisir une adresse e-mail valide';

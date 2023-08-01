@@ -2,6 +2,7 @@
 @import url('modal.css');
 @import url('scrolling-menu.css');
 @import url('statisticals.css');
+@import url('lightbox.css');
 
 html,
 p {
@@ -44,6 +45,10 @@ img {
   justify-content: flex-start;
 }
 
+.jc-fe {
+  justify-content: flex-end;
+}
+
 .jc-sb {
   justify-content: space-between;
 }
@@ -62,6 +67,10 @@ img {
 
 .ai-fs {
   align-items: flex-start;
+}
+
+.ai-fe {
+  align-items: flex-end;
 }
 
 .fw-w {

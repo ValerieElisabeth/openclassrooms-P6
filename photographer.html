@@ -49,8 +49,7 @@
     <!-- /////////// HEADER : Profil du Photographe //////////////// -->
     <main id="main"></main>
 
-    <!-- /////////// MENU DÉROULANT //////////////// -->
-
+    <!-- /////////// SELECT EN MENU DÉROULANT //////////////// -->
     <section id="scrolling-menu-id" class="container-05 d-flex fd-r">
       <h3></h3>
     </section>
@@ -62,11 +61,8 @@
     <section id="statisticals-window" class="p-relative"></section>
 
     <!-- /////////// MODALE //////////////// -->
-
     <div class="modal-01Container-Class">
       <div class="modal-02Container-Class d-flex fd-c">
-        <!-- <span class="closeX"></span> -->
-
         <header class="modal-03Container-Header-Class d-flex fd-c ai-fs">
           <h2 class="h2-Contact-Element">Contactez-moi</h2>
         </header>
@@ -90,14 +86,37 @@
             <label class="message-label">Votre message</label>
             <input name="message" id="message" />
           </div>
-          <!-- BOUTON ENVOIE ET RÉINITIALISE LA PAGE -->
+          <!-- BOUTON D'ENVOIE ET DE réinitialisation de la page -->
           <input class="contact_button submit" type="submit" value="Envoyer" />
         </form>
       </div>
     </div>
 
-    <!-- /////////// SCRIPT //////////////// -->
+    <!-- /////////// LIGHTBOX-MODAL //////////////// -->
 
+    <section class="lightbox container-02 d-flex ai-c jc-c e01">
+      <div class="d-flex fd-r">
+        <div class="e03 d-flex ai-fe">
+          <a href="">
+            <i class="fa-sharp fa-solid fa-chevron-left"></i>
+          </a>
+        </div>
+
+        <div class="d-flex fd-c jc-sb">
+          <div class="e04">
+            <img src="" alt="" />
+          </div>
+          <p>TITRE DE L'IMAGE</p>
+        </div>
+
+        <div class="e03 d-flex fd-c jc-sb">
+          <button><i class="fa-sharp fa-solid fa-xmark"></i></button>
+          <a href="#"><i class="fa-sharp fa-solid fa-chevron-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- /////////// SCRIPT //////////////// -->
     <script src="scripts/pages/base/fetchRequeteAPI.js"></script>
     <script src="scripts/pages/base/navPhotographer-Logo.js"></script>
     <script src="scripts/factories/photographerFactory.js"></script>
