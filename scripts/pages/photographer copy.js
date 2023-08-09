@@ -31,7 +31,7 @@ async function constructorPhotographerPage() {
   // PHOTOGRAHE CHOISI PAR L'UTILISATEUR -----------------------------
   // Filtrer les médias pour n'inclure que ceux du photographe choisi
 
-  const filterMediaOfOnePhotographer = dataTabMediasJSON.filter(
+  const mediaOfSelectedPhotographer = dataTabMediasJSON.filter(
     (media) => media.photographerId === getId_URL
   );
 
@@ -50,8 +50,11 @@ async function constructorPhotographerPage() {
 
   //-------------------------------------------------------------------
   // AFFICHAGE DES STATISTIQUES rattaché sur l'ID : scrolling-menu-id :
-  // en utilisant directement la variable : filterMediaOfOnePhotographer
-  const totalLikes = filterMediaOfOnePhotographer.reduce(
+
+  const filteredMedias = dataTabMediasJSON.filter(
+    (media) => media.photographerId === getId_URL
+  );
+  const totalLikes = filteredMedias.reduce(
     (total, media) => total + media.likes,
     0
   );
@@ -72,28 +75,28 @@ async function constructorPhotographerPage() {
   //-------------------------------------------------------------------
   // Appel de la fonction : displayGallery()
   // qui filtre le tableau des medias en fonction de l'id du photographe
-
   await displayGallery(
     onePhotographerDatas,
-    filterMediaOfOnePhotographer.sort((a, b) => {
-      return b.likes - a.likes;
-    })
+    dataTabMediasJSON
+      .filter((cibler) => cibler.photographerId === getId_URL)
+      .sort((a, b) => {
+        return b.likes - a.likes;
+      })
   );
 
-  //-------------------------------------------------------------------
-  // Appel de la fonction : filterMedia()
-  await filterMedia(onePhotographerDatas, filterMediaOfOnePhotographer);
-
-  //-------------------------------------------------------------------
-  // Appel de la fonction : displayLightboxAsync()
-  // Pour afficher le contenu du container image
-  await displayLightboxAsync(
+  filterMedia(
     onePhotographerDatas,
-    filterMediaOfOnePhotographer
+    dataTabMediasJSON.filter((cibler) => cibler.photographerId === getId_URL)
   );
+
+  // Appeler la fonction pour afficher le contenu du container image
+  await displayLightboxAsync(onePhotographerDatas, mediaOfSelectedPhotographer);
 } // fin de la fonction : constructorPhotographerPage()
 
-//-------------------------------------------------------------------
+//
+//
+//
+//
 // FONCTION : displayGallery() affiche la galerie d'un photographe sur la page web
 async function displayGallery(onePhotographer, onePhotographerMedias) {
   //
@@ -119,7 +122,10 @@ async function displayGallery(onePhotographer, onePhotographerMedias) {
   });
 }
 
-//-------------------------------------------------------------------
+
+
+
+//
 // FONCTION : filterMedia() qui gère le scrollingMenu
 async function filterMedia(onePhotographerDatas, sortDatasMedia) {
   document.querySelectorAll('.select-items div').forEach((element) => {
@@ -152,24 +158,23 @@ async function filterMedia(onePhotographerDatas, sortDatasMedia) {
   console.log(sortDatasMedia);
 }
 
-//-------------------------------------------------------------------
+//
+//
+//
+//
 // FONCTION : displayLightboxAsync() affiche la Lightbox d'un photographe
-
-async function displayLightboxAsync(
-  onePhotographerDatas,
-  filterMediaOfOnePhotographer
-) {
+async function displayLightboxAsync() {
   //
   // Création d'un objet de ma media Factory
   const mediaFactoryInstance = mediaFactory(
     onePhotographerDatas,
-    filterMediaOfOnePhotographer
+    mediaOfSelectedPhotographer
   );
 
-  // Appel la méthode : displayLightbox()
+  // Appel ma méthode : displayLightbox()
   const model_DisplayLightbox = mediaFactoryInstance.displayLightbox(
     onePhotographerDatas,
-    filterMediaOfOnePhotographer
+    mediaOfSelectedPhotographer
   );
 
   // La classe ciblée dans le DOM.

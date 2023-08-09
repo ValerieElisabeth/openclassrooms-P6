@@ -141,7 +141,7 @@
 
 .img-container {
   min-width: 350px;
-  height: 300px;
+  height: 350px;
   overflow: hidden;
 
   /* background-color: #db8876;
@@ -150,13 +150,15 @@
 
 .img-size {
   width: 100%;
+  border-radius: 10px;
   object-fit: cover;
   height: inherit;
-  object-position: 0% 50%;
+  object-position: 0% 40%;
 }
 
 .video-size {
   width: 100%;
+  border-radius: 10px;
   object-fit: cover;
   height: inherit;
 }
