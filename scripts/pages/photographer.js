@@ -83,14 +83,6 @@ async function constructorPhotographerPage() {
   //-------------------------------------------------------------------
   // Appel de la fonction : filterMedia()
   await filterMedia(onePhotographerDatas, filterMediaOfOnePhotographer);
-
-  //-------------------------------------------------------------------
-  // Appel de la fonction : displayLightboxAsync()
-  // Pour afficher le contenu du container image
-  await displayLightboxAsync(
-    onePhotographerDatas,
-    filterMediaOfOnePhotographer
-  );
 } // fin de la fonction : constructorPhotographerPage()
 
 //-------------------------------------------------------------------
@@ -152,34 +144,5 @@ async function filterMedia(onePhotographerDatas, sortDatasMedia) {
   console.log(sortDatasMedia);
 }
 
-//-------------------------------------------------------------------
-// FONCTION : displayLightboxAsync() affiche la Lightbox d'un photographe
-
-async function displayLightboxAsync(
-  onePhotographerDatas,
-  filterMediaOfOnePhotographer
-) {
-  //
-  // Création d'un objet de ma media Factory
-  const mediaFactoryInstance = mediaFactory(
-    onePhotographerDatas,
-    filterMediaOfOnePhotographer
-  );
-
-  // Appel la méthode : displayLightbox()
-  const model_DisplayLightbox = mediaFactoryInstance.displayLightbox(
-    onePhotographerDatas,
-    filterMediaOfOnePhotographer
-  );
-
-  // La classe ciblée dans le DOM.
-  const classe_Ciblee = document.querySelector('.lightbox');
-
-  // La classe ciblée devient le PARENT de mon MODÉLE
-  classe_Ciblee.appendChild(model_DisplayLightbox);
-}
-
-// Appeler la fonction asynchrone pour afficher l'élément dans le DOM
-displayLightboxAsync();
 
 constructorPhotographerPage();
