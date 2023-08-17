@@ -17,18 +17,20 @@ function mediaFactory(datasPhotographers, datasMedia) {
   // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
   function displayGalleryDOM() {
-    const article = document.createElement('article');
-    article.classList.add('card-container');
-    article.classList.add('d-flex');
-    article.classList.add('fd-c');
-    article.classList.add('jc-sb');
+    const div_principal_Container = document.createElement('div');
+    div_principal_Container.classList.add('card-container');
+    div_principal_Container.classList.add('d-flex');
+    div_principal_Container.classList.add('fd-c');
+    div_principal_Container.classList.add('jc-sb');
 
-    // Création d'un container pour l'image, afin de gérer l'agrandissement des portaits dans leur block
-    const mediaContainer = document.createElement('div');
-    mediaContainer.classList.add('img-container');
-    mediaContainer.classList.add('d-flex');
-    mediaContainer.classList.add('ai-c');
-    mediaContainer.classList.add('jc-c');
+    // Création d'un container LINK <a> pour l'image, afin de gérer l'agrandissement des portaits dans leur block
+    const a_Link_MediaContainer = document.createElement('a');
+    a_Link_MediaContainer.classList.add(
+      'a-img-container',
+      'd-flex',
+      'ai-c',
+      'jc-c'
+    );
 
     // Vérifier si c'est une image ou une vidéo
     if (image) {
@@ -40,9 +42,10 @@ function mediaFactory(datasPhotographers, datasMedia) {
       imgElement.setAttribute('src', getGallery);
       imgElement.setAttribute('aria-label', title);
       imgElement.setAttribute('alt', 'galerie image du photographe');
+      a_Link_MediaContainer.setAttribute('href', getGallery);
 
       // Ajouter l'élément image au container multimédia
-      mediaContainer.appendChild(imgElement);
+      a_Link_MediaContainer.appendChild(imgElement);
       //
     } else if (video) {
       const getVideo = `assets/images/${name}/${video}`;
@@ -59,11 +62,13 @@ function mediaFactory(datasPhotographers, datasMedia) {
       sourceElement.setAttribute('src', getVideo);
       sourceElement.setAttribute('type', 'video/mp4');
       videoElement.appendChild(sourceElement);
+      a_Link_MediaContainer.setAttribute('href', getVideo);
+
       // Ajouter l'élément vidéo au container multimédia
-      mediaContainer.appendChild(videoElement);
+      a_Link_MediaContainer.appendChild(videoElement);
     }
 
-    // Container secondaire à la balise "article".
+    // Container secondaire à la balise "div_principal_Container".
     // Il englobe toutes les informations sous l'image.
     const infosContainer = document.createElement('div');
     infosContainer.classList.add(
@@ -96,8 +101,8 @@ function mediaFactory(datasPhotographers, datasMedia) {
     iElement.classList.add('fa-sharp', 'fa-solid', 'fa-heart');
 
     // RATTACHER LES ÉLÉMENTS AU DOM
-    article.appendChild(mediaContainer);
-    article.appendChild(infosContainer);
+    div_principal_Container.appendChild(a_Link_MediaContainer);
+    div_principal_Container.appendChild(infosContainer);
     // mediaContainer.appendChild(imgElement);
     infosContainer.appendChild(h2Element);
     infosContainer.appendChild(noteContainer);
@@ -105,8 +110,8 @@ function mediaFactory(datasPhotographers, datasMedia) {
     noteContainer.appendChild(pHeart);
     pHeart.appendChild(iElement);
 
-    // La fonction retourne un DOM, mis en page, dans la balise <article>.
-    return article;
+    // La fonction retourne un DOM, mis en page, dans la balise <div_principal_Container>.
+    return div_principal_Container;
   } // fin fonction : displayGalleryDOM()
 
   // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
@@ -251,7 +256,6 @@ function mediaFactory(datasPhotographers, datasMedia) {
     return statisticalsWindowContainer;
   }
 
- 
   // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
   return {

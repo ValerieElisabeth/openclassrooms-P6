@@ -1,3 +1,16 @@
+body.open-modal {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+.close-modal:hover {
+  cursor: pointer;
+}
+
+.open-modal:hover {
+  cursor: pointer;
+}
+
 .lightbox-backdrop {
   position: absolute;
   top: 0;
@@ -5,37 +18,72 @@
   background-color: rgba(63, 6, 67, 0.2);
   width: 100%;
   height: 100%;
-  border: solid 5px red;
+  border: solid 5px rgb(234, 0, 255);
   z-index: 10;
+  overflow-y: hidden;
 }
 
+/* Container principal juste après le backdrop */
 .lightbox-container {
   position: absolute;
   top: 50%;
   right: 50%;
 
   transform: translate(50%, -50%);
-  background-color: rgba(99, 240, 39);
-  border: solid 5px red;
-
+  background-color: rgb(206, 233, 206);
+  padding-top: 60px;
   width: 50%;
-  height: 50%;
+  height: 900px;
 }
 
+.next-btn-container,
 .back-btn-container {
-  border: solid 5px red;
-  width: 50%;
-  height: 50%;
+  border: solid 8px rgb(112, 129, 216);
+  width: 30px;
+  height: 450px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
-.next-btn-container {
-  border: solid 5px red;
-  width: 50%;
-  height: 50%;
+/* Style des balises <i> */
+.back-btn-container,
+.next-btn-container i {
+  font-size: 50px;
+  color: rgb(189, 16, 16);
+  font-weight: bold;
 }
 
-.img-lightbox-container {
-  border: solid 5px red;
-  width: 50%;
-  height: 50%;
+.lightbox-container button {
+  background-color: transparent;
+  border: solid 0px;
+}
+
+/* Bloc image = paragraphe central */
+.block-img-lightbox-container {
+  width: 80%;
+  height: 92%;
+  border: solid 5px rgb(255, 200, 0);
+}
+
+/* Container direct de l'image */
+.div-image-container {
+  width: 100%;
+  height: 100%;
+  border: solid 10px rgb(0, 34, 255);
+  border-radius: 10px;
+}
+
+/* Balise img */
+.lightbox-container img {
+  background-color: rgb(206, 216, 112);
+}
+
+/* Titre de l'image */
+.lightbox-container p {
+  height: 30px;
+  font-size: 24px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: rgb(189, 16, 16);
+  border: solid 5px rgb(0, 255, 221);
 }
