@@ -34,7 +34,7 @@ function mediaFactory(datasPhotographers, datasMedia) {
 
     // Vérifier si c'est une image ou une vidéo
     if (image) {
-      const getGallery = `assets/images/${name}/${image}`;
+      const getGallery = `/assets/images/${name}/${image}`;
 
       // Création balise <img> auquel on attribue la variable "getGallery"
       const imgElement = document.createElement('img');
@@ -48,14 +48,14 @@ function mediaFactory(datasPhotographers, datasMedia) {
       a_Link_MediaContainer.appendChild(imgElement);
       //
     } else if (video) {
-      const getVideo = `assets/images/${name}/${video}`;
+      const getVideo = `/assets/images/${name}/${video}`;
 
       // Création balise <video> auquel on attribue la variable "getGallery"
       const videoElement = document.createElement('video');
       videoElement.classList.add('video-size');
       videoElement.setAttribute('aria-label', title);
       videoElement.setAttribute('alt', 'galerie vidéo du photographe');
-      videoElement.setAttribute('autoplay', true);
+      // videoElement.setAttribute('autoplay', true);
       videoElement.setAttribute('controls', true);
 
       const sourceElement = document.createElement('source');

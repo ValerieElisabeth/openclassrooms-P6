@@ -13,7 +13,6 @@ EN RÉCUPÉRANT CHAQUE MORCEAU DE LA PAGE.
 (7) La méthode find() Permet de cibler 1 seul élément dans toutes les données d'un seul phototographe.
 Nous ciblons donc l'ID et d'un photographe et il doit être égal à l'ID présent dans l'URL.
 */
-
 async function constructorPhotographerPage() {
   const fetchDatasPhotographersJSON = await getFetchDatasPhotographersJSON(); // (1)
   const dataTabPhotographers = fetchDatasPhotographersJSON.photographers; // (2)
@@ -85,6 +84,8 @@ async function constructorPhotographerPage() {
   await filterMedia(onePhotographerDatas, filterMediaOfOnePhotographer);
 } // fin de la fonction : constructorPhotographerPage()
 
+let URL_href_Tab = [];
+
 //-------------------------------------------------------------------
 // FONCTION : displayGallery() affiche la galerie d'un photographe sur la page web
 async function displayGallery(onePhotographer, onePhotographerMedias) {
@@ -108,6 +109,27 @@ async function displayGallery(onePhotographer, onePhotographerMedias) {
     // Ajouter la méthode au DOM
     // La classe ciblée devient le PARENT de mon MODÉLE
     classe_Cliblee.appendChild(model_GalleryImagesDOM);
+  });
+
+  /*
+  --------------------------------------------------------------------
+  RÉCUPÉRATION DES LIENS <a> IMAGES
+  --------------------------------------------------------------------
+  */
+  // (2) Tableau (liste) des liens <a> de tous les MEDIAS de la galerie du photographe.
+  const link_a = Array.from(document.querySelectorAll('.card-container a'));
+  console.log(link_a);
+
+  // (3) Tableau (liste) des Chemins 'href' de tous les Médias de la galerie du photographe.
+  const URL_href_Tab = link_a.map((link) => link.getAttribute('href'));
+
+  // (1) Un écouteur d'évènement permet d'ouvrir la modale quand on clique sur un média.
+  link_a.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      console.log('TOTO');
+      openModalFunction(e, link.getAttribute('href'), URL_href_Tab);
+    });
   });
 }
 
@@ -143,6 +165,5 @@ async function filterMedia(onePhotographerDatas, sortDatasMedia) {
   scrollingMenuSection_Id.addEventListener('change', async function (e) {});
   console.log(sortDatasMedia);
 }
-
 
 constructorPhotographerPage();

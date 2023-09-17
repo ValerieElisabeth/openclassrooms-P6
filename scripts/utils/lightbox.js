@@ -1,11 +1,20 @@
-function openModalFunction() {
-  //
-  // création d'une modale de la galerie par dessus toute la page web.
-  const body_Element = document.querySelector('body');
+/*
+--------------------------------------------------------------------
+FONCTION QUI CONSTRUIT LA LIGHTBOX DANS LE DOM
+--------------------------------------------------------------------
+*/
+let urlMediaSelected;
 
-  // LIGHTBOX BACKDROP
-  const lightbox_backdrop = document.createElement('div');
-  lightbox_backdrop.classList.add(
+function openModalFunction(e, urlTarget, URL_href_Tab) {
+  console.log('MODALE NIVEAU 01 Entrée');
+  e.preventDefault();
+  urlMediaSelected = urlTarget;
+
+  //
+  // Création d'une Lightbox, au dessus toute la page web.
+  // LIGHTBOX BACKDROP CONTAINER
+  const lightbox_backdrop_Cible = document.querySelector('.lightbox');
+  lightbox_backdrop_Cible.classList.add(
     'lightbox-backdrop',
     'd-flex',
     'ai-c',
@@ -44,13 +53,29 @@ function openModalFunction() {
   );
 
   //  BLOC IMAGE CONTAINER <div>
-  const div_ImgContainer = document.createElement('div');
-  div_ImgContainer.classList.add('div-image-container');
+  const div_Container_Medias = document.createElement('div');
+  div_Container_Medias.classList.add('div-container-media');
 
-  // image
-  const image = document.createElement('img');
-  image.setAttribute('src', '/assets/images/logo.png');
-  image.setAttribute('alt', "titre de l'image du Photographe dynamique ici");
+  // AFFCIHAGE DU BON MÉDIA DANS LE BLOC IMAGE
+  const isMediaVideo = urlTarget.includes('.mp4');
+  //
+  if (isMediaVideo) {
+    const video_Element = document.createElement('video');
+    video_Element.setAttribute('aria-label', 'titre dynamique de la vidéo');
+    video_Element.setAttribute('alt', 'galerie vidéo du photographe');
+    // video_Element.setAttribute('autoplay', true);
+    video_Element.setAttribute('controls', true);
+    const source_Element = document.createElement('source');
+    source_Element.setAttribute('src', urlTarget);
+    source_Element.setAttribute('type', 'video/mp4');
+    video_Element.appendChild(source_Element);
+    div_Container_Medias.appendChild(video_Element);
+  } else {
+    const image = document.createElement('img');
+    image.setAttribute('src', urlTarget);
+    image.setAttribute('alt', "titre de l'image du Photographe dynamique ici");
+    div_Container_Medias.appendChild(image);
+  }
 
   // LÉGENDE IMAGE <p>
   const p_Element = document.createElement('p');
@@ -82,43 +107,102 @@ function openModalFunction() {
   const a_Next_Element = document.createElement('a');
   const i_Next_Element = document.createElement('i');
   i_Next_Element.classList.add('fa-sharp', 'fa-solid', 'fa-chevron-right');
+  console.log("Je suis sur le point d'ajouter un écouteur d'événement");
+  a_Next_Element.addEventListener('click', (e) => nextBtn(e, URL_href_Tab));
 
   // RATTACHEMENT AU DOM
-  body_Element.appendChild(lightbox_backdrop);
-  lightbox_backdrop.appendChild(lightbox_Container_01);
+  lightbox_backdrop_Cible.appendChild(lightbox_Container_01);
   lightbox_Container_01.appendChild(backBtnContainer_02);
   backBtnContainer_02.appendChild(a_Back_Element);
   a_Back_Element.appendChild(i_Back_Element);
   lightbox_Container_01.appendChild(center_Block_Lightbox_Container_02);
-  center_Block_Lightbox_Container_02.appendChild(div_ImgContainer);
-  div_ImgContainer.appendChild(image);
+  center_Block_Lightbox_Container_02.appendChild(div_Container_Medias);
   center_Block_Lightbox_Container_02.appendChild(p_Element);
   lightbox_Container_01.appendChild(nextBtnContainer_02);
   nextBtnContainer_02.appendChild(button_Close_Modal_Element);
   button_Close_Modal_Element.appendChild(i_CLose_Element);
   nextBtnContainer_02.appendChild(a_Next_Element);
   a_Next_Element.appendChild(i_Next_Element);
+  console.log('MODALE 05 Terminé');
 }
 
-// MES ÉOUTEURS D'ÉVÈNEMENTS :
-// Open modal
-const open_Modal = document.querySelector('.open-modal');
-open_Modal.addEventListener('click', openModalFunction);
+/*
+--------------------------------------------------------------------
+ÉOUTEUR D'ÉVÈNEMENT // Open modal :
+--------------------------------------------------------------------
+*/
+// const open_Modal = document.querySelector('.open-modal');
+// open_Modal.addEventListener('click', openModalFunction);
 
-// Fonction Close Modal en ciblant le parent qui est le Body, puis en supprimant un de ses enfants,
-// Ici, la construction de notre Modale, en ciblant directement le Backdrop, comme enfant.
+/*
+--------------------------------------------------------------------
+FONCTION CLOSE MODALE :
+--------------------------------------------------------------------
+Fonction Close Modal en ciblant le parent qui est le Body, puis en supprimant un de ses enfants,
+Ici, la construction de notre Modale, en ciblant directement le Backdrop, comme enfant.
+*/
+
 function closeModalFunction() {
-  const lightbox_backdrop_Child = document.querySelector('.lightbox-backdrop');
-  const parent_BackdropIsBody = lightbox_backdrop_Child.parentElement;
-  parent_BackdropIsBody.removeChild(lightbox_backdrop_Child);
+  const child_Islightbox_container = document.querySelector(
+    '.lightbox-container'
+  );
+  const parent_Islightbox_backdrop = child_Islightbox_container.parentElement;
+  parent_Islightbox_backdrop.removeChild(child_Islightbox_container);
 }
 
-// const allLinksMedia_a = document.querySelectorAll(
-//   '.grid-gallery-container .card-container a'
-// );
+/*
+--------------------------------------------------------------------
+RÉCUPÉRATION DES IMAGES
+--------------------------------------------------------------------
+*/
 
-// console.log(
-//   'T O U T E S    L E S     I M A G E S     D E    LA   G A L E R I E'
-// );
+function nextBtn(e, URL_href_Tab) {
+  e.preventDefault();
+  console.log("Le bouton 'Next' est cliqué");
 
-// console.log(allLinksMedia_a);
+  //==============================================================
+
+  const displayingIndexSelected = URL_href_Tab.findIndex(
+    (image) => image === urlMediaSelected
+  );
+
+  const total_ListImages = URL_href_Tab.length;
+  let nextDisplayIndex;
+
+  if (displayingIndexSelected === total_ListImages - 1) {
+    nextDisplayIndex = 0;
+  } else {
+    nextDisplayIndex = displayingIndexSelected + 1;
+  }
+
+  //====================================================
+
+  // Trouve le conteneur de média dans le DOM
+  const mediaContainer = document.querySelector('.div-container-media');
+  const newUrlTarget = URL_href_Tab[nextDisplayIndex];
+  urlMediaSelected = newUrlTarget;
+  console.log(newUrlTarget);
+  mediaContainer.innerHTML = ' ';
+  // AFFCIHAGE DU BON MÉDIA DANS LE BLOC IMAGE
+  const isMediaVideo = newUrlTarget.includes('.mp4');
+  //
+  if (isMediaVideo) {
+    const video_Element = document.createElement('video');
+    video_Element.setAttribute('aria-label', 'titre dynamique de la vidéo');
+    video_Element.setAttribute('alt', 'galerie vidéo du photographe');
+    video_Element.setAttribute('autoplay', true);
+    video_Element.setAttribute('controls', true);
+    const source_Element = document.createElement('source');
+    source_Element.setAttribute('src', newUrlTarget);
+    source_Element.setAttribute('type', 'video/mp4');
+    video_Element.appendChild(source_Element);
+    mediaContainer.appendChild(video_Element);
+  } else {
+    const image = document.createElement('img');
+    image.setAttribute('src', newUrlTarget);
+    image.setAttribute('alt', "titre de l'image du Photographe dynamique ici");
+    mediaContainer.appendChild(image);
+  }
+
+  console.log('Fonction : "NEXT" NIVEAU 02 Terminé');
+}

@@ -9,6 +9,10 @@ body.open-modal {
 
 .open-modal:hover {
   cursor: pointer;
+
+  /* Propriété qui cache le reste de la page */
+  /* height: 100vh;
+  overflow-y: hidden; */
 }
 
 .lightbox-backdrop {
@@ -28,12 +32,11 @@ body.open-modal {
   position: absolute;
   top: 50%;
   right: 50%;
-
   transform: translate(50%, -50%);
   background-color: rgb(206, 233, 206);
   padding-top: 60px;
   width: 50%;
-  height: 900px;
+  height: 100vh;
 }
 
 .next-btn-container,
@@ -66,15 +69,18 @@ body.open-modal {
 }
 
 /* Container direct de l'image */
-.div-image-container {
-  width: 100%;
-  height: 100%;
-  border: solid 10px rgb(0, 34, 255);
+.div-container-media {
+  /* width: 100%;
+  height: 100%; */
+  border: solid 5px rgb(0, 34, 255);
   border-radius: 10px;
 }
 
 /* Balise img */
 .lightbox-container img {
+  object-fit: contain;
+  width: 100%;
+  height: 100vh;
   background-color: rgb(206, 216, 112);
 }
 
