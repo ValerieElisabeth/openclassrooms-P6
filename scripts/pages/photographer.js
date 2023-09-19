@@ -84,10 +84,15 @@ async function constructorPhotographerPage() {
   await filterMedia(onePhotographerDatas, filterMediaOfOnePhotographer);
 } // fin de la fonction : constructorPhotographerPage()
 
+/*
+  --------------------------------------------------------------------
+ FONCTION : displayGallery() affiche la galerie d'un photographe sur la page web
+  --------------------------------------------------------------------
+  */
+
 let URL_href_Tab = [];
 
 //-------------------------------------------------------------------
-// FONCTION : displayGallery() affiche la galerie d'un photographe sur la page web
 async function displayGallery(onePhotographer, onePhotographerMedias) {
   //
   // La classe ciblée dans le DOM.
@@ -121,17 +126,40 @@ async function displayGallery(onePhotographer, onePhotographerMedias) {
   console.log(link_a);
 
   // (3) Tableau (liste) des Chemins 'href' de tous les Médias de la galerie du photographe.
-  const URL_href_Tab = link_a.map((link) => link.getAttribute('href'));
+  URL_href_Tab = link_a.map((link) => link.getAttribute('href'));
 
   // (1) Un écouteur d'évènement permet d'ouvrir la modale quand on clique sur un média.
   link_a.forEach((link) => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      console.log('TOTO');
       openModalFunction(e, link.getAttribute('href'), URL_href_Tab);
     });
   });
 }
+
+/*
+  --------------------------------------------------------------------
+  NAVIGATION DU CLAVIER DE LA LIGHTBOX
+  --------------------------------------------------------------------
+  */
+document.addEventListener('keyup', (e) => {
+  console.log(e);
+  const keyPress = e.key;
+  console.log(keyPress);
+
+  switch (keyPress) {
+    case 'ArrowRight':
+      nextBtn(e, URL_href_Tab);
+      break;
+
+    case 'ArrowLeft':
+      backBtn(e, URL_href_Tab);
+      break;
+    case 'Escape':
+      closeModalFunction();
+      break;
+  }
+});
 
 //-------------------------------------------------------------------
 // FONCTION : filterMedia() qui gère le scrollingMenu

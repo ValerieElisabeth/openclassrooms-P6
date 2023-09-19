@@ -42,7 +42,9 @@ function openModalFunction(e, urlTarget, URL_href_Tab) {
   const a_Back_Element = document.createElement('a');
   const i_Back_Element = document.createElement('i');
   i_Back_Element.classList.add('fa-sharp', 'fa-solid', 'fa-chevron-left');
+  i_Back_Element.addEventListener('click', (e) => backBtn(e, URL_href_Tab));
 
+  //
   // CENTRAL CONTAINER : BLOC IMAGE CONTAINER <div> + LÉGENDE IMAGE <p>
   const center_Block_Lightbox_Container_02 = document.createElement('div');
   center_Block_Lightbox_Container_02.classList.add(
@@ -57,25 +59,7 @@ function openModalFunction(e, urlTarget, URL_href_Tab) {
   div_Container_Medias.classList.add('div-container-media');
 
   // AFFCIHAGE DU BON MÉDIA DANS LE BLOC IMAGE
-  const isMediaVideo = urlTarget.includes('.mp4');
-  //
-  if (isMediaVideo) {
-    const video_Element = document.createElement('video');
-    video_Element.setAttribute('aria-label', 'titre dynamique de la vidéo');
-    video_Element.setAttribute('alt', 'galerie vidéo du photographe');
-    // video_Element.setAttribute('autoplay', true);
-    video_Element.setAttribute('controls', true);
-    const source_Element = document.createElement('source');
-    source_Element.setAttribute('src', urlTarget);
-    source_Element.setAttribute('type', 'video/mp4');
-    video_Element.appendChild(source_Element);
-    div_Container_Medias.appendChild(video_Element);
-  } else {
-    const image = document.createElement('img');
-    image.setAttribute('src', urlTarget);
-    image.setAttribute('alt', "titre de l'image du Photographe dynamique ici");
-    div_Container_Medias.appendChild(image);
-  }
+  displayCorrectMedia(div_Container_Medias, urlTarget);
 
   // LÉGENDE IMAGE <p>
   const p_Element = document.createElement('p');
@@ -107,7 +91,6 @@ function openModalFunction(e, urlTarget, URL_href_Tab) {
   const a_Next_Element = document.createElement('a');
   const i_Next_Element = document.createElement('i');
   i_Next_Element.classList.add('fa-sharp', 'fa-solid', 'fa-chevron-right');
-  console.log("Je suis sur le point d'ajouter un écouteur d'événement");
   a_Next_Element.addEventListener('click', (e) => nextBtn(e, URL_href_Tab));
 
   // RATTACHEMENT AU DOM
@@ -128,14 +111,6 @@ function openModalFunction(e, urlTarget, URL_href_Tab) {
 
 /*
 --------------------------------------------------------------------
-ÉOUTEUR D'ÉVÈNEMENT // Open modal :
---------------------------------------------------------------------
-*/
-// const open_Modal = document.querySelector('.open-modal');
-// open_Modal.addEventListener('click', openModalFunction);
-
-/*
---------------------------------------------------------------------
 FONCTION CLOSE MODALE :
 --------------------------------------------------------------------
 Fonction Close Modal en ciblant le parent qui est le Body, puis en supprimant un de ses enfants,
@@ -152,40 +127,16 @@ function closeModalFunction() {
 
 /*
 --------------------------------------------------------------------
-RÉCUPÉRATION DES IMAGES
+FONCTION D'AFFICHAGE DU BON MEDIA ET DE CONSTRUCTION DU DOM
 --------------------------------------------------------------------
 */
 
-function nextBtn(e, URL_href_Tab) {
-  e.preventDefault();
-  console.log("Le bouton 'Next' est cliqué");
-
-  //==============================================================
-
-  const displayingIndexSelected = URL_href_Tab.findIndex(
-    (image) => image === urlMediaSelected
-  );
-
-  const total_ListImages = URL_href_Tab.length;
-  let nextDisplayIndex;
-
-  if (displayingIndexSelected === total_ListImages - 1) {
-    nextDisplayIndex = 0;
-  } else {
-    nextDisplayIndex = displayingIndexSelected + 1;
-  }
-
-  //====================================================
-
-  // Trouve le conteneur de média dans le DOM
-  const mediaContainer = document.querySelector('.div-container-media');
-  const newUrlTarget = URL_href_Tab[nextDisplayIndex];
-  urlMediaSelected = newUrlTarget;
-  console.log(newUrlTarget);
-  mediaContainer.innerHTML = ' ';
-  // AFFCIHAGE DU BON MÉDIA DANS LE BLOC IMAGE
+function displayCorrectMedia(mediaContainer, newUrlTarget) {
   const isMediaVideo = newUrlTarget.includes('.mp4');
-  //
+
+  // Vider le conteneur de média au cas où
+  mediaContainer.innerHTML = '';
+
   if (isMediaVideo) {
     const video_Element = document.createElement('video');
     video_Element.setAttribute('aria-label', 'titre dynamique de la vidéo');
@@ -203,6 +154,80 @@ function nextBtn(e, URL_href_Tab) {
     image.setAttribute('alt', "titre de l'image du Photographe dynamique ici");
     mediaContainer.appendChild(image);
   }
+}
 
-  console.log('Fonction : "NEXT" NIVEAU 02 Terminé');
+/*
+--------------------------------------------------------------------
+FONCTION NEXT SUIVANTE
+--------------------------------------------------------------------
+*/
+
+function nextBtn(e, URL_href_Tab) {
+  e.preventDefault();
+  console.log("Le bouton 'Next' est cliqué");
+
+  //===========================================
+
+  const displayingIndexSelected = URL_href_Tab.findIndex(
+    (image) => image === urlMediaSelected
+  );
+
+  const total_ListImages = URL_href_Tab.length;
+  let nextDisplayIndex;
+
+  if (displayingIndexSelected === total_ListImages - 1) {
+    nextDisplayIndex = 0;
+  } else {
+    nextDisplayIndex = displayingIndexSelected + 1;
+  }
+  //===========================================
+
+  // Cible le conteneur des médias dans le DOM
+  const mediaContainer = document.querySelector('.div-container-media');
+  const newUrlTarget = URL_href_Tab[nextDisplayIndex];
+  urlMediaSelected = newUrlTarget;
+  console.log(newUrlTarget);
+  mediaContainer.innerHTML = ' ';
+
+  // AFFCIHAGE DU BON MÉDIA DANS LE BLOC IMAGE
+  displayCorrectMedia(mediaContainer, newUrlTarget);
+}
+
+/*
+--------------------------------------------------------------------
+FONCTION BACK PRÉCÉDENTE
+--------------------------------------------------------------------
+*/
+
+function backBtn(e, URL_href_Tab) {
+  e.preventDefault();
+  console.log("Le bouton 'BACK' est cliqué");
+
+  //===========================================
+
+
+
+  const displayingIndexSelected = URL_href_Tab.findIndex(
+    (image) => image === urlMediaSelected
+  );
+
+  const total_ListImages = URL_href_Tab.length;
+  let backDisplayIndex;
+
+  if (displayingIndexSelected === 0) {
+    backDisplayIndex = total_ListImages - 1;
+  } else {
+    backDisplayIndex = displayingIndexSelected - 1;
+  }
+  //===========================================
+
+  // Cible le conteneur des médias dans le DOM
+  const mediaContainer = document.querySelector('.div-container-media');
+  const newUrlTarget = URL_href_Tab[backDisplayIndex];
+  urlMediaSelected = newUrlTarget;
+  console.log(newUrlTarget);
+  mediaContainer.innerHTML = ' ';
+
+  // AFFCIHAGE DU BON MÉDIA DANS LE BLOC IMAGE
+  displayCorrectMedia(mediaContainer, newUrlTarget);
 }
